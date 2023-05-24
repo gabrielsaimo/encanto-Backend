@@ -1,15 +1,16 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CategoriaCardapio } from './services/categoria-cardapio.entity';
+import { CategoriaCardapioService } from './services/CategoriaCardapioService';
+import { CategoriaCardapioController } from './categoria-cardapio/categoria-cardapio.controller';
 import { databaseConfig } from './config/database.config';
-import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(databaseConfig),
-    UserModule,
-    // Outros módulos do seu aplicativo
+    TypeOrmModule.forFeature([CategoriaCardapio]),
   ],
-  controllers: [],
-  providers: [],
+  controllers: [CategoriaCardapioController],
+  providers: [CategoriaCardapioService],
 })
 export class AppModule {}

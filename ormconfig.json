@@ -1,0 +1,6 @@
+{
+    "type": "postgres",
+    "url": "postgres://default:fh3sxIEMt5OX@ep-curly-art-830376-pooler.us-east-2.postgres.vercel-storage.com:5432/verceldb",
+    "entities": ["src/entities/*.ts"],
+    "synchronize": true
+  }
