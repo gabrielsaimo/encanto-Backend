@@ -16,7 +16,7 @@ export class CardapioService {
 
   async update(cardapio: Cardapio): Promise<any> {
     return this.CardapioRepository.query(
-      'update "Encanto".cardapio set active = $1 , name = $2 , price= $3 , description = $2 , category= $5 , sub = $6 where id = $7',
+      'update "Encanto".cardapio set active = $1 , name = $2 , price= $3 , description = $4 , category= $5 , sub = $6 where id = $7',
       [
         cardapio.active,
         cardapio.name,
