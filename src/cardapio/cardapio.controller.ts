@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { CardapioService } from '../services/CardapioService';
 import { Cardapio } from '../services/cardapio.entity';
 
@@ -14,7 +14,17 @@ export class CardapioController {
   }
 
   @Post()
-  async update(cardapio: any): Promise<any> {
+  async update(@Body() cardapio: Cardapio): Promise<any> {
     return this.CardapioService.update(cardapio);
+  }
+
+  @Put()
+  async create(@Body() cardapio: Cardapio): Promise<any> {
+    return this.CardapioService.create(cardapio);
+  }
+
+  @Delete()
+  async delete(@Body() cardapio: Cardapio): Promise<any> {
+    return this.CardapioService.delete(cardapio);
   }
 }

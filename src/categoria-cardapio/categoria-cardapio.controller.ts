@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { CategoriaCardapioService } from '../services/CategoriaCardapioService';
 import { CategoriaCardapio } from '../services/categoria-cardapio.entity';
 
@@ -12,5 +12,20 @@ export class CategoriaCardapioController {
   @Get()
   async findAll(): Promise<CategoriaCardapio[]> {
     return this.categoriaCardapioService.findAll();
+  }
+
+  @Post()
+  async update(@Body() categoriaCardapio: CategoriaCardapio): Promise<any> {
+    return this.categoriaCardapioService.update(categoriaCardapio);
+  }
+
+  @Put()
+  async create(@Body() categoriaCardapio: CategoriaCardapio): Promise<any> {
+    return this.categoriaCardapioService.create(categoriaCardapio);
+  }
+
+  @Delete()
+  async delete(@Body() categoriaCardapio: CategoriaCardapio): Promise<any> {
+    return this.categoriaCardapioService.delete(categoriaCardapio);
   }
 }
