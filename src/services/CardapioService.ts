@@ -44,14 +44,10 @@ export class CardapioService {
     );
   }
 
-  async delete(cardapio: any): Promise<any> {
-    console.log(
-      '🚀 ~ file: CardapioService.ts:48 ~ CardapioService ~ delete ~ cardapio:',
-      cardapio,
-    );
+  async delete(id: any): Promise<void> {
     return this.CardapioRepository.query(
       'delete from "Encanto".cardapio where id = $1',
-      [cardapio],
+      [id],
     );
   }
 }

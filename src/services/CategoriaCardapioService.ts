@@ -33,7 +33,7 @@ export class CategoriaCardapioService {
   async delete(categoriaCardapio: CategoriaCardapio): Promise<any> {
     return this.categoriaCardapioRepository.query(
       'delete from "Encanto".categoriacardapio where id = $1',
-      [categoriaCardapio.id],
+      [categoriaCardapio],
     );
   }
 }

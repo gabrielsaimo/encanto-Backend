@@ -1,4 +1,13 @@
-import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Param,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Put,
+  Options,
+} from '@nestjs/common';
 import { CardapioService } from '../services/CardapioService';
 import { Cardapio } from '../services/cardapio.entity';
 
@@ -23,8 +32,8 @@ export class CardapioController {
     return this.CardapioService.create(cardapio);
   }
 
-  @Delete()
-  async delete(@Body() cardapio: Cardapio): Promise<any> {
-    return this.CardapioService.delete(cardapio);
+  @Delete(':id')
+  async delete(@Param('id') id: any): Promise<void> {
+    return this.CardapioService.delete(id);
   }
 }
