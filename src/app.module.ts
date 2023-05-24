@@ -4,13 +4,16 @@ import { CategoriaCardapio } from './services/categoria-cardapio.entity';
 import { CategoriaCardapioService } from './services/CategoriaCardapioService';
 import { CategoriaCardapioController } from './categoria-cardapio/categoria-cardapio.controller';
 import { databaseConfig } from './config/database.config';
+import { Cardapio } from './services/cardapio.entity';
+import { CardapioController } from './cardapio/cardapio.controller';
+import { CardapioService } from './services/CardapioService';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(databaseConfig),
-    TypeOrmModule.forFeature([CategoriaCardapio]),
+    TypeOrmModule.forFeature([Cardapio, CategoriaCardapio]),
   ],
-  controllers: [CategoriaCardapioController],
-  providers: [CategoriaCardapioService],
+  controllers: [CategoriaCardapioController, CardapioController],
+  providers: [CategoriaCardapioService, CardapioService],
 })
 export class AppModule {}
