@@ -12,7 +12,7 @@ export class Cardapio {
   name: string;
 
   @Column()
-  categoria: string;
+  category: string;
 
   @Column()
   price: number;
