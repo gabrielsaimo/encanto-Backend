@@ -8,8 +8,8 @@ import {
   Put,
   Options,
 } from '@nestjs/common';
-import { CardapioService } from '../services/CardapioService';
-import { Cardapio } from '../services/cardapio.entity';
+import { CardapioService } from '../services/Cardapio/CardapioService';
+import { Cardapio } from '../services/Cardapio/cardapio.entity';
 
 @Controller('cardapio')
 export class CardapioController {

@@ -7,8 +7,8 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { CategoriaCardapioService } from '../services/CategoriaCardapioService';
-import { CategoriaCardapio } from '../services/categoria-cardapio.entity';
+import { CategoriaCardapioService } from '../services/Categoria/CategoriaCardapioService';
+import { CategoriaCardapio } from '../services/Categoria/categoria-cardapio.entity';
 
 @Controller('categoria-cardapio')
 export class CategoriaCardapioController {

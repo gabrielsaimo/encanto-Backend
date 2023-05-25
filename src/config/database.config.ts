@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Cardapio } from 'src/services/cardapio.entity';
-import { CategoriaCardapio } from 'src/services/categoria-cardapio.entity';
+import { Cardapio } from 'src/services/Cardapio/cardapio.entity';
+import { CategoriaCardapio } from 'src/services/Categoria/categoria-cardapio.entity';
 import * as dotenv from 'dotenv';
  dotenv.config();
 
