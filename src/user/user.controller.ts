@@ -11,7 +11,6 @@ export class UserController {
   ) {}
   @Post()
   async findAll(@Body() data): Promise<User[]> {
-    console.log("🚀 ~ file: user.controller.ts:14 ~ UserController ~ findAll ~ data:", data)
     return this.userService.findUser(data.name,data.password);
   }
 }
