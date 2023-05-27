@@ -17,7 +17,7 @@ export class CardapioService {
 
   async update(cardapio: Cardapio): Promise<any> {
     return this.CardapioRepository.query(
-      'update "Encanto".cardapio set active = $1 , name = $2 , price= $3 , description = $4 , category= $5 , sub = $6 where id = $7',
+      'update "Encanto".cardapio set active = $1 , name = $2 , price= $3 , description = $4 , category= $5 , sub = $6 , update_at = $7 , update_by= $8 where id = $7',
       [
         cardapio.active,
         cardapio.name,
@@ -25,6 +25,8 @@ export class CardapioService {
         cardapio.description,
         cardapio.category,
         cardapio.sub,
+        cardapio.update_at,
+        cardapio.update_by,
         cardapio.id,
       ],
     );
@@ -32,7 +34,7 @@ export class CardapioService {
 
   async create(cardapio: Cardapio): Promise<any> {
     return this.CardapioRepository.query(
-      'insert into "Encanto".cardapio (active, name, price, description, category, sub, id) values ($1, $2, $3, $4, $5, $6, $7)',
+      'insert into "Encanto".cardapio (active, name, price, description, category, sub, update_at,update_by, id) values ($1, $2, $3, $4, $5, $6, $7)',
       [
         cardapio.active,
         cardapio.name,
@@ -40,6 +42,8 @@ export class CardapioService {
         cardapio.description,
         cardapio.category,
         cardapio.sub,
+        cardapio.update_at,
+        cardapio.update_by,
         cardapio.id,
       ],
     );
