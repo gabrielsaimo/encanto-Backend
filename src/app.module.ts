@@ -16,16 +16,21 @@ import { StartModule } from './start/start.module';
 import { Start } from './services/Start/start.entity';
 import { StartController } from './start/start.controller';
 import { StartService } from './services/Start/StartService';
+import { User } from './services/User/User.entity';
+import { UserModule } from './user/user.module';
+import { UserController } from './user/user.controller';
+import { UserService } from './services/User/UserService';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(databaseConfig),
-    TypeOrmModule.forFeature([Start,Cardapio, CategoriaCardapio,Estoque]),
+    TypeOrmModule.forFeature([Start,User,Cardapio, CategoriaCardapio,Estoque]),
     EstoqueModule,
     PedidoModule,
     StartModule,
+    UserModule,
   ],
-  controllers: [CategoriaCardapioController, CardapioController, EstoqueController, StartController],
-  providers: [CategoriaCardapioService, CardapioService,EstoqueService,StartService],
+  controllers: [CategoriaCardapioController, CardapioController, EstoqueController, StartController,UserController],
+  providers: [CategoriaCardapioService, CardapioService,EstoqueService,StartService,UserService],
 })
 export class AppModule {}
