@@ -8,7 +8,7 @@ import { Cardapio } from './services/Cardapio/cardapio.entity';
 import { CardapioController } from './cardapio/cardapio.controller';
 import { CardapioService } from './services/Cardapio/CardapioService';
 import { EstoqueModule } from './estoque/estoque.module';
-import { PedidoModule } from './pedido/pedido.module';
+
 import { Estoque } from './services/Estoque/Estoque.entity';
 import { EstoqueController } from './estoque/estoque.controller';
 import { EstoqueService } from './services/Estoque/EstoqueService';
@@ -20,17 +20,21 @@ import { User } from './services/User/User.entity';
 import { UserModule } from './user/user.module';
 import { UserController } from './user/user.controller';
 import { UserService } from './services/User/UserService';
+import { Pedido } from './services/Pedido/Pedido.entity';
+import { PedidoModule } from './pedido/pedido.module';
+import { PedidoController } from './pedido/pedido.controller';
+import { PedidoService } from './services/Pedido/PedidoService';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(databaseConfig),
-    TypeOrmModule.forFeature([Start,User,Cardapio, CategoriaCardapio,Estoque]),
+    TypeOrmModule.forFeature([Start,User,Cardapio, CategoriaCardapio,Estoque,Pedido]),
     EstoqueModule,
     PedidoModule,
     StartModule,
     UserModule,
   ],
-  controllers: [CategoriaCardapioController, CardapioController, EstoqueController, StartController,UserController],
-  providers: [CategoriaCardapioService, CardapioService,EstoqueService,StartService,UserService],
+  controllers: [CategoriaCardapioController, CardapioController, EstoqueController, StartController,UserController,PedidoController],
+  providers: [CategoriaCardapioService, CardapioService,EstoqueService,StartService,UserService,PedidoService],
 })
 export class AppModule {}
