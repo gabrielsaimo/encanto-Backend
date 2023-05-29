@@ -12,7 +12,7 @@ export class PedidoService {
 
   async findPedido(): Promise<any[]> {
     return this.pedidoRepository.query(
-      `select * from "Encanto".pedido where status != 'Finalizado'`,
+      `select * from "Encanto".pedido where status != 'Finalizado' ORDER BY created_at DESC;`,
     );
   }
 
