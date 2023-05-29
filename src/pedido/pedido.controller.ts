@@ -27,10 +27,11 @@ export class PedidoController {
     return this.pedidoServise.update(estoque);
   }
 
-  @Put()
-  async create(@Body() estoque: Pedido): Promise<any> {
-    return this.pedidoServise.create(estoque);
-  }
+  
 */
+@Put()
+  async create(@Body() pedido: Pedido): Promise<any> {
+    return this.pedidoServise.create(pedido);
+  }
 }
 

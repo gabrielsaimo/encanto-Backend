@@ -34,6 +34,9 @@ export class Pedido {
     update_by: string;
 
     @Column()
+    update_at: string;
+
+    @Column()
     acepted_by: string;
 
     @Column()
