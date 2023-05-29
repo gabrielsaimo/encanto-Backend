@@ -12,12 +12,12 @@ export class PedidoService {
 
   async findPedido(): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `select * from "Encanto".pedido where status != 'Finalizado' ORDER BY created_at DESC;`,
+      `select * from "Encanto".pedido where status not in('Finalizado','Cancelado') ORDER BY created_at DESC;`,
     );
   }
   async findMessa(): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `SELECT DISTINCT mesa FROM "Encanto".pedido;`,
+      `SELECT DISTINCT mesa FROM "Encanto".pedido where status not in('Finalizado','Cancelado');`,
     );
   }
 
