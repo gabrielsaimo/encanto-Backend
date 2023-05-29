@@ -15,6 +15,19 @@ export class PedidoService {
       `select * from "Encanto".pedido where status != 'Finalizado' ORDER BY created_at DESC;`,
     );
   }
+  async findMessa(): Promise<any[]> {
+    return this.pedidoRepository.query(
+      `SELECT DISTINCT mesa FROM "Encanto".pedido;`,
+    );
+  }
+
+  async findPedidoByMesa(mesa: string): Promise<any[]> {
+    return this.pedidoRepository.query(
+      `select * from "Encanto".pedido where mesa = $1 and status != 'Finalizado' ORDER BY created_at DESC;`,
+      [mesa],
+    );
+  }
+  
 
   
 /*

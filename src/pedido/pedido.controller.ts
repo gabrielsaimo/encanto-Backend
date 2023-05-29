@@ -21,6 +21,16 @@ export class PedidoController {
   async findPedido(): Promise<Pedido[]> {
     return this.pedidoServise.findPedido();
   }
+
+  @Get('mesa')
+  async findMessa(): Promise<Pedido[]> {
+    return this.pedidoServise.findMessa();
+  }
+
+  @Get('mesa/:mesa')
+  async findPedidoByMesa(@Param('mesa') mesa: string): Promise<Pedido[]> {
+    return this.pedidoServise.findPedidoByMesa(mesa);
+  }
 /*
   @Post()
   async update(@Body() estoque: Pedido): Promise<any> {
