@@ -10,21 +10,28 @@ export class PedidoService {
     private readonly pedidoRepository: Repository<any>,
   ) {}
 
-  async findPedido(): Promise<any[]> {
+  async findPedido(): Promise<Pedido[]> {
     return this.pedidoRepository.query(
       `select * from "Encanto".pedido where status != 'Finalizado' ORDER BY created_at DESC;`,
     );
   }
-  async findMessa(): Promise<any[]> {
+  async findMessa(): Promise<Pedido[]> {
     return this.pedidoRepository.query(
       `SELECT DISTINCT mesa FROM "Encanto".pedido;`,
     );
   }
 
-  async findPedidoByMesa(mesa: string): Promise<any[]> {
+  async findPedidoByMesa(mesa: string): Promise<Pedido[]> {
     return this.pedidoRepository.query(
       `select * from "Encanto".pedido where mesa = $1 and status != 'Finalizado' ORDER BY created_at DESC;`,
       [mesa],
+    );
+  }
+
+  async postPedidoStatus(data:any): Promise<Pedido[]> {
+    return this.pedidoRepository.query(
+      `update "Encanto".pedido set status = $1 , update_by = $2 ,update_at = $3,acepted_by = $4 , acepted_at= $5 ,finished_by = $6, finished_at = $7 where id = $8`,
+      [data.status, data.update_by, data.update_at, data.acepted_by, data.acepted_at, data.finished_by, data.finished_at, data.id],
     );
   }
   
