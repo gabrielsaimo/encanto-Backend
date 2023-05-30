@@ -24,6 +24,9 @@ import { Pedido } from './services/Pedido/Pedido.entity';
 import { PedidoModule } from './pedido/pedido.module';
 import { PedidoController } from './pedido/pedido.controller';
 import { PedidoService } from './services/Pedido/PedidoService';
+import { EmailModule } from './email/email.module';
+import { EmailController } from './email/email.controller';
+import { EmailService } from './services/EmailService/EmailService';
 
 @Module({
   imports: [
@@ -33,8 +36,9 @@ import { PedidoService } from './services/Pedido/PedidoService';
     PedidoModule,
     StartModule,
     UserModule,
+    EmailModule,
   ],
-  controllers: [CategoriaCardapioController, CardapioController, EstoqueController, StartController,UserController,PedidoController],
-  providers: [CategoriaCardapioService, CardapioService,EstoqueService,StartService,UserService,PedidoService],
+  controllers: [CategoriaCardapioController, CardapioController, EstoqueController, StartController,UserController,PedidoController,EmailController],
+  providers: [CategoriaCardapioService, CardapioService,EstoqueService,StartService,UserService,PedidoService,EmailService],
 })
 export class AppModule {}
