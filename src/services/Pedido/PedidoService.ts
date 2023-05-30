@@ -28,14 +28,13 @@ export class PedidoService {
     );
   }
 
-  async postPedidoStatus(data:any): Promise<Pedido[]> {
+  async postPedidoStatus(data:Pedido): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `update "Encanto".pedido set status = $1 , update_by = $2 ,update_at = $3,acepted_by = $4 , acepted_at= $5 ,finished_by = $6, finished_at = $7 where id = $8`,
-      [data.status, data.update_by, data.update_at, data.acepted_by, data.acepted_at, data.finished_by, data.finished_at, data.id],
+      `update "Encanto".pedido set status = $1 , update_by = $2 ,update_at = $3,acepted_by = $4 , acepted_at= $5 ,finished_by = $6, finished_at = $7, obs_cancel = $8  where id = $9`,
+      [data.status, data.update_by, data.update_at, data.acepted_by, data.acepted_at, data.finished_by, data.finished_at, data.obs_cancel, data.id],
     );
   }
   
-
   
 /*
   async update(categoriaCardapio: User): Promise<any> {
