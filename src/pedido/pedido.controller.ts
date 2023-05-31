@@ -41,6 +41,11 @@ export class PedidoController {
   async postPedidoStatus(@Body() data: any): Promise<Pedido[]> {
     return this.pedidoServise.postPedidoStatus(data);
   }
+
+  @Post('transferir')
+  async trasnfPedidoByMesa(@Body() data: any): Promise<Pedido[]> {
+    return this.pedidoServise.trasnfPedidoByMesa(data);
+  }
   
 /*
   @Post()
