@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { User } from 'src/services/User/User.entity';
 import { UserService } from 'src/services/User/UserService';
 
@@ -29,5 +29,11 @@ export class UserController {
   async updateAdm(@Body() data): Promise<any> {
     return this.userService.updateAdm(data);
   }
+
+  @Put()
+  async create(@Body() data): Promise<User> {
+    return this.userService.create(data);
+  }
+
   
 }
