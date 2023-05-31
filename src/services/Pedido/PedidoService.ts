@@ -62,17 +62,6 @@ export class PedidoService {
     }
   }
   
-  
-/*
-  async update(categoriaCardapio: User): Promise<any> {
-    return this.pedidoRepository.query(
-      'update "Encanto".categoriacardapio set active = $1 , name = $2 where id = $3',
-      [categoriaCardapio.active, categoriaCardapio.name, categoriaCardapio.id],
-    );
-  }
-
-  
-*/
 async create(data: Pedido): Promise<Pedido> {
   return  this.pedidoRepository.query(
     `INSERT INTO "Encanto".pedido
@@ -80,4 +69,12 @@ async create(data: Pedido): Promise<Pedido> {
     [data.id, data.created_at, data.desconto, data.mesa, data.obs, data.pedidos, data.status, data.valor, data.created_by, data.acepted_by, data.acepted_at, data.update_by, data.finished_by, data.finished_at, data.update_at],
   );
 }
+
+  async delete(id: number): Promise<any> {
+    return this.pedidoRepository.query(
+      'delete from "Encanto".pedido where id = $1',
+      [id],
+    );
+  }
+  
 }

@@ -59,5 +59,10 @@ export class PedidoController {
   async create(@Body() pedido: Pedido): Promise<any> {
     return this.pedidoServise.create(pedido);
   }
+
+  @Delete(':id')
+  async delete(@Param('id') id: number): Promise<any> {
+    return this.pedidoServise.delete(id);
+  }
 }
 

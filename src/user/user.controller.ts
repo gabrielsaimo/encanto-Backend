@@ -9,8 +9,20 @@ export class UserController {
   constructor(
     private readonly userService: UserService,
   ) {}
+  
   @Post()
-  async findAll(@Body() data): Promise<User[]> {
+  async findAll(@Body() data): Promise<User> {
     return this.userService.findUser(data.name,data.password);
   }
+
+  @Post('update')
+  async update(@Body() data): Promise<any> {
+    return this.userService.updatePassowd(data);
+  }
+
+  @Post('adm')
+  async updateAdm(@Body() data): Promise<any> {
+    return this.userService.updateAdm(data);
+  }
+  
 }
