@@ -22,6 +22,11 @@ export class PedidoController {
     return this.pedidoServise.findPedido();
   }
 
+  @Get('adm')
+  async findPedidoAdm(): Promise<Pedido[]> {
+    return this.pedidoServise.findPedidoAdm();
+  }
+  
   @Get('mesa')
   async findMessa(): Promise<Pedido[]> {
     return this.pedidoServise.findMessa();
