@@ -15,6 +15,12 @@ export class UserService {
       `select * from "Encanto".user where "name" = '${name}' and "password" = '${password}'`,
     );
   }
+
+  async getUserAdm(): Promise<any> {
+    return this.userRepository.query(
+      `select id,name,categoria,active from "Encanto"."user"`,
+    );
+  }
   
 
   async updatePassowd(categoriaCardapio: User): Promise<any> {

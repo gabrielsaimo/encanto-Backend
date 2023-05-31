@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { User } from 'src/services/User/User.entity';
 import { UserService } from 'src/services/User/UserService';
 
@@ -13,6 +13,11 @@ export class UserController {
   @Post()
   async findAll(@Body() data): Promise<User> {
     return this.userService.findUser(data.name,data.password);
+  }
+  
+  @Get('adm')
+  async findUserAdm(): Promise<User[]> {
+    return this.userService.getUserAdm();
   }
 
   @Post('update')
