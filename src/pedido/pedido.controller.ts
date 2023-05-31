@@ -37,10 +37,17 @@ export class PedidoController {
     return this.pedidoServise.findPedidoByMesa(mesa);
   }
 
+  @Get('status/:id')
+  async findStatusPedido(@Param('id') id: number): Promise<Pedido[]> {
+    return this.pedidoServise.findStatusPedido(id);
+  }
+  
+
   @Post('status')
   async postPedidoStatus(@Body() data: any): Promise<Pedido[]> {
     return this.pedidoServise.postPedidoStatus(data);
   }
+
 
   @Post('transferir')
   async trasnfPedidoByMesa(@Body() data: any): Promise<Pedido[]> {

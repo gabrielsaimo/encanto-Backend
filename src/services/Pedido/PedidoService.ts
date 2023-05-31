@@ -26,6 +26,12 @@ export class PedidoService {
       `SELECT DISTINCT mesa FROM "Encanto".pedido where status not in('Finalizado','Cancelado');`,
     );
   }
+  async findStatusPedido(id): Promise<Pedido[]> {
+    return this.pedidoRepository.query(
+      `select status from "Encanto".pedido where id = $1;`,
+      [id],
+    );
+  }
 
   async findPedidoByMesa(mesa: string): Promise<Pedido[]> {
     return this.pedidoRepository.query(
