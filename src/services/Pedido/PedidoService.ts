@@ -35,9 +35,10 @@ export class PedidoService {
   }
 
   async postPedidoStatus(data:Pedido): Promise<Pedido[]> {
+    
     if(data.status !== 'Em Preparo' && data.status !== 'Em Cancelamento'){
     return this.pedidoRepository.query(
-      `update "Encanto".pedido set status = $1 , update_by = $2 ,update_at = $3,finished_by = $4, finished_at = $5 where id = $7`,
+      `update "Encanto".pedido set status = $1 , update_by = $2 ,update_at = $3,finished_by = $4, finished_at = $5 where id = $6`,
       [data.status, data.update_by, data.update_at, data.finished_by, data.finished_at, data.id],
     );
 
@@ -48,7 +49,7 @@ export class PedidoService {
       );
     }else{
       return this.pedidoRepository.query(
-        `update "Encanto".pedido set status = $1 , update_by = $2 ,update_at = $3,acepted_by = $4 , acepted_at= $5 ,finished_by = $6, finished_at = $7  where id = $9`,
+        `update "Encanto".pedido set status = $1 , update_by = $2 ,update_at = $3,acepted_by = $4 , acepted_at= $5 ,finished_by = $6, finished_at = $7  where id = $8`,
         [data.status, data.update_by, data.update_at, data.acepted_by, data.acepted_at, data.finished_by, data.finished_at, data.id],
       );
     }
