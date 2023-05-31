@@ -14,4 +14,7 @@ export class User {
 
   @Column()
   categoria: string;
+
+  @Column()
+  password: string;
 }
