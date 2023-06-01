@@ -47,6 +47,13 @@ export class PedidoService {
     );
   }
 
+  async finalizarMesa(data:any): Promise<Pedido[]> {
+    return this.pedidoRepository.query(
+      `update "Encanto".mesa set status = 'Fechado' ,tipo_pagamento = $1 ,obs =$2 ,closed_at =$3,closed_by =$4, valor =$5 where id = $5`,
+      [data.tipo_pagamento, data.obs, data.closed_at, data.closed_by, data.valor, data.id],
+    );
+  }
+  
   async findStatusPedido(id): Promise<Pedido[]> {
     return this.pedidoRepository.query(
       `select status from "Encanto".pedido where id = $1;`,

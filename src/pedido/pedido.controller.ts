@@ -52,6 +52,11 @@ export class PedidoController {
     return this.pedidoServise.valorMesa(mesa);
   }
 
+  @Post('finalizar')
+  async finalizarMesa(@Body() data: any): Promise<Pedido[]> {
+    return this.pedidoServise.finalizarMesa(data);
+  }
+
   @Get('status/:id')
   async findStatusPedido(@Param('id') id: number): Promise<Pedido[]> {
     return this.pedidoServise.findStatusPedido(id);
