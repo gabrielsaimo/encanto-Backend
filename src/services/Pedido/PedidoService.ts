@@ -40,6 +40,13 @@ export class PedidoService {
     );
   }
 
+  async valorMesa(mesa:number): Promise<Pedido[]> {
+    return this.pedidoRepository.query(
+      `select Sum(valor) from "Encanto".pedido where id_mesa = $1`,
+      [mesa],
+    );
+  }
+
   async findStatusPedido(id): Promise<Pedido[]> {
     return this.pedidoRepository.query(
       `select status from "Encanto".pedido where id = $1;`,

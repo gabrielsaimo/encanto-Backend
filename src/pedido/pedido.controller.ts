@@ -47,6 +47,11 @@ export class PedidoController {
     return this.pedidoServise.findMessaAdm();
   }
 
+  @Get('valor/:mesa')
+  async valorMesa(@Param('mesa') mesa: number): Promise<Pedido[]> {
+    return this.pedidoServise.valorMesa(mesa);
+  }
+
   @Get('status/:id')
   async findStatusPedido(@Param('id') id: number): Promise<Pedido[]> {
     return this.pedidoServise.findStatusPedido(id);
