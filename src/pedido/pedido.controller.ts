@@ -42,6 +42,11 @@ export class PedidoController {
     return this.pedidoServise.verifMesa(mesa);
   }
 
+  @Get('verif/finalizar/:mesa')
+  async verifFinalizar(@Param('mesa') mesa: number): Promise<Pedido[]> {
+    return this.pedidoServise.verifFinalizar(mesa);
+  }
+
   @Get('mesa/adm')
   async findMessaAdm(): Promise<Pedido[]> {
     return this.pedidoServise.findMessaAdm();
