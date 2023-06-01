@@ -27,9 +27,9 @@ export class PedidoService {
     );
   }
 
-  async verifMesa(mesa: string): Promise<Pedido[]> {
+  async verifMesa(mesa: number): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `select id,nm_mesa from "Encanto".mesa where mesa = $1 and status not in('Fechado');`,
+      `select id,nm_mesa from "Encanto".mesa where nm_mesa = $1 and status not in('Fechado');`,
       [mesa],
     );
   }
