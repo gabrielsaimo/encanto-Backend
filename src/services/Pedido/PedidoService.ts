@@ -34,6 +34,13 @@ export class PedidoService {
     );
   }
 
+  async verifFinalizar(mesa: number): Promise<Pedido[]> {
+    return this.pedidoRepository.query(
+      `select * from "Encanto".pedido where id_mesa = $1 and status not in('Finalizado','Cancelado');`,
+      [mesa],
+    );
+  }
+
   async findMessaAdm(): Promise<Pedido[]> {
     return this.pedidoRepository.query(
       `select * from "Encanto".mesa;`,
