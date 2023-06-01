@@ -39,8 +39,8 @@ export class UserService {
 
 async create(categoriaCardapio: User): Promise<User> {
   return this.userRepository.query(
-    'insert into "Encanto".user ( name ,categoria , id) values ($1, $2, $3)',
-    [categoriaCardapio.name,categoriaCardapio.categoria  , categoriaCardapio.id],
+    'insert into "Encanto".user ( name ,categoria,password , id) values ($1, $2,,$4 $3)',
+    [categoriaCardapio.name,categoriaCardapio.categoria,categoriaCardapio.password , categoriaCardapio.id],
   );
 }
 }
