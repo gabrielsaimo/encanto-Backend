@@ -78,7 +78,7 @@ export class PedidoController {
   }
 
   @Put('mesa')
-  async createMesa(@Body() pedido: Pedido): Promise<any> {
+  async createMesa(@Body() pedido: any): Promise<any> {
     return this.pedidoServise.createMesa(pedido);
   }
 
