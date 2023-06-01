@@ -77,8 +77,8 @@ export class PedidoService {
   
   async trasnfPedidoByMesa(data:Pedido): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `update "Encanto".pedido set mesa = $1 , update_by = $2 ,update_at = $3 where id = $4`,
-      [data.mesa, data.update_by, data.update_at, data.id],
+      `update "Encanto".pedido set mesa = $1 , update_by = $2 ,update_at = $3 ,id_mesa =$4 where id = $5`,
+      [data.mesa, data.update_by, data.update_at, data.id_mesa, data.id],
     );
   }
   
