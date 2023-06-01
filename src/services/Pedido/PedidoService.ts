@@ -90,6 +90,14 @@ async create(data: Pedido): Promise<Pedido> {
   );
 }
 
+  async createMesa(data: any): Promise<any> {
+    return this.pedidoRepository.query(
+      `INSERT INTO "Encanto".mesa (id, nm_mesa, status,created_at,created_by) values ($1, $2, $3, $4, $5)`,
+      [data.id, data.nm_mesa, data.status, data.created_at, data.created_by],
+    );
+  }
+  
+
   async delete(id: number): Promise<any> {
     return this.pedidoRepository.query(
       'delete from "Encanto".pedido where id = $1',
