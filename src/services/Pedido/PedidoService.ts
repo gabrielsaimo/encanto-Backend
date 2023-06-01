@@ -42,7 +42,7 @@ export class PedidoService {
 
   async valorMesa(mesa:number): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `select Sum(valor) from "Encanto".pedido where id_mesa = $1`,
+      `select Sum(valor) as valor from "Encanto".pedido where id_mesa = $1`,
       [mesa],
     );
   }
