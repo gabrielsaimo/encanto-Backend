@@ -125,5 +125,12 @@ async create(data: Pedido): Promise<Pedido> {
       [id],
     );
   }
+
+  async deleteMesa(id: number): Promise<any> {
+    return this.pedidoRepository.query(
+      'delete from "Encanto".mesa where id = $1',
+      [id],
+    );
+  }
   
 }

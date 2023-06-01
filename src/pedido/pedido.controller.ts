@@ -101,5 +101,11 @@ export class PedidoController {
   async delete(@Param('id') id: number): Promise<any> {
     return this.pedidoServise.delete(id);
   }
+
+  @Delete('mesa/:id')
+  async deleteMesa(@Param('id') id: number): Promise<any> {
+    return this.pedidoServise.deleteMesa(id);
+  }
+  
 }
 
