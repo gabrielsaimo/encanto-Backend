@@ -13,6 +13,9 @@ export class Pedido {
     created_at: string;
 
     @Column()
+    id_mesa: number;
+
+    @Column()
     desconto: number;
 
     @Column()

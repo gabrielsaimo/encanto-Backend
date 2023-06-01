@@ -37,6 +37,16 @@ export class PedidoController {
     return this.pedidoServise.findPedidoByMesa(mesa);
   }
 
+  @Get('mesa/verif/:mesa')
+  async verifMesa(@Param('mesa') mesa: string): Promise<Pedido[]> {
+    return this.pedidoServise.verifMesa(mesa);
+  }
+
+  @Get('mesa/adm')
+  async findMessaAdm(): Promise<Pedido[]> {
+    return this.pedidoServise.findMessaAdm();
+  }
+  
   @Get('status/:id')
   async findStatusPedido(@Param('id') id: number): Promise<Pedido[]> {
     return this.pedidoServise.findStatusPedido(id);
