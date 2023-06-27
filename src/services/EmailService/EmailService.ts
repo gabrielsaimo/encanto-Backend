@@ -16,7 +16,7 @@ export class EmailService {
       from: 'EncantoAmapaense@outlook.com',
       to: destinatario,
       subject: assunto,
-      text: corpo,
+      html: corpo,
     };
 
     await transporter.sendMail(mailOptions);
