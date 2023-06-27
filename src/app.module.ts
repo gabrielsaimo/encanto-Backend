@@ -27,6 +27,9 @@ import { PedidoService } from './services/Pedido/PedidoService';
 import { EmailModule } from './email/email.module';
 import { EmailController } from './email/email.controller';
 import { EmailService } from './services/EmailService/EmailService';
+import { WebSocketModule } from './web-socket/web-socket.module';
+import { NotificationsController } from './web-socket/web-socket.controller';
+import { NotificationsGateway } from './web-socket/notifications.gateway';
 
 @Module({
   imports: [
@@ -37,8 +40,9 @@ import { EmailService } from './services/EmailService/EmailService';
     StartModule,
     UserModule,
     EmailModule,
+    WebSocketModule
   ],
-  controllers: [CategoriaCardapioController, CardapioController, EstoqueController, StartController,UserController,PedidoController,EmailController],
-  providers: [CategoriaCardapioService, CardapioService,EstoqueService,StartService,UserService,PedidoService,EmailService],
+  controllers: [CategoriaCardapioController, CardapioController, EstoqueController, StartController,UserController,PedidoController,EmailController,NotificationsController],
+  providers: [CategoriaCardapioService, CardapioService,EstoqueService,StartService,UserService,PedidoService,EmailService,NotificationsGateway],
 })
 export class AppModule {}

@@ -1,7 +1,5 @@
 /* eslint-disable prettier/prettier */
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Cardapio } from 'src/services/Cardapio/cardapio.entity';
-import { CategoriaCardapio } from 'src/services/Categoria/categoria-cardapio.entity';
 import * as dotenv from 'dotenv';
  dotenv.config();
 
@@ -15,11 +13,9 @@ export const databaseConfig: TypeOrmModuleOptions = {
   password: process.env.POSTGRES_PASSWORD ,
   database: process.env.POSTGRES_DATABASE ,
   entities: [
-    __dirname + '/../**/*.entity{.ts,.js}',
-    Cardapio,
-    CategoriaCardapio,
+    __dirname + '/../**/*.entity{.ts,.js}'
   ],
-  synchronize: true, // Defina como false em produção
+  synchronize: false, // Defina como false em produção
   ssl: {
     rejectUnauthorized: false,
   },
