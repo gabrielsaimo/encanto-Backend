@@ -28,8 +28,8 @@ export class CardapioService {
   }
 
   async update(cardapio: Cardapio): Promise<any> {
-    await this.cacheManager.set('Cardapio', undefined, 0);
-    return this.CardapioRepository.query(
+    await this.cacheManager.reset();
+    return await this.CardapioRepository.query(
       'update "Encanto".cardapio set active = $1 , name = $2 , price= $3 , description = $4 , category= $5 , sub = $6 , update_at = $7 , update_by= $8 where id = $9',
       [
         cardapio.active,
