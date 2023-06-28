@@ -3,7 +3,11 @@ import * as nodemailer from 'nodemailer';
 
 @Injectable()
 export class EmailService {
-  async enviarEmail(destinatario: string, assunto: string, corpo: string): Promise<void> {
+  async enviarEmail(
+    destinatario: string,
+    assunto: string,
+    corpo: string
+  ): Promise<void> {
     const transporter = nodemailer.createTransport({
       service: 'Outlook.com',
       auth: {

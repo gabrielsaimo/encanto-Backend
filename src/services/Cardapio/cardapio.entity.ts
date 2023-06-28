@@ -23,7 +23,7 @@ export class Cardapio {
 
   @Column()
   sub: string;
-  
+
   @Column()
   update_at: Date;
 

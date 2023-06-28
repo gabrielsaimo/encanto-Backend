@@ -34,19 +34,42 @@ import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
-    CacheModule.register({
-      ttl: 1000
-    }) ,
+    CacheModule.register(),
     TypeOrmModule.forRoot(databaseConfig),
-    TypeOrmModule.forFeature([Start,User,Cardapio, CategoriaCardapio,Estoque,Pedido]),
+    TypeOrmModule.forFeature([
+      Start,
+      User,
+      Cardapio,
+      CategoriaCardapio,
+      Estoque,
+      Pedido,
+    ]),
     EstoqueModule,
     PedidoModule,
     StartModule,
     UserModule,
     EmailModule,
-    WebSocketModule
+    WebSocketModule,
   ],
-  controllers: [CategoriaCardapioController, CardapioController, EstoqueController, StartController,UserController,PedidoController,EmailController,NotificationsController],
-  providers: [CategoriaCardapioService, CardapioService,EstoqueService,StartService,UserService,PedidoService,EmailService,NotificationsGateway],
+  controllers: [
+    CategoriaCardapioController,
+    CardapioController,
+    EstoqueController,
+    StartController,
+    UserController,
+    PedidoController,
+    EmailController,
+    NotificationsController,
+  ],
+  providers: [
+    CategoriaCardapioService,
+    CardapioService,
+    EstoqueService,
+    StartService,
+    UserService,
+    PedidoService,
+    EmailService,
+    NotificationsGateway,
+  ],
 })
 export class AppModule {}

@@ -1,11 +1,9 @@
-/* eslint-disable prettier/prettier */
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Cardapio } from './cardapio.entity';
 import { Cache } from 'cache-manager';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
-
 @Injectable()
 export class CardapioService {
   constructor(
@@ -20,10 +18,12 @@ export class CardapioService {
       console.log('cache');
       return value;
     }
-    const response =  await this.CardapioRepository.query('select * from "Encanto".cardapio c');
-      console.log('banco');
-       await this.cacheManager.set('Cardapio', response, 0);
-       return response;
+    const response = await this.CardapioRepository.query(
+      'select * from "Encanto".cardapio c'
+    );
+    console.log('banco');
+    await this.cacheManager.set('Cardapio', response, 0);
+    return response;
   }
 
   async update(cardapio: Cardapio): Promise<any> {
@@ -40,7 +40,7 @@ export class CardapioService {
         cardapio.update_at,
         cardapio.update_by,
         cardapio.id,
-      ],
+      ]
     );
   }
 
@@ -58,14 +58,14 @@ export class CardapioService {
         cardapio.update_at,
         cardapio.update_by,
         cardapio.id,
-      ],
+      ]
     );
   }
 
   async delete(id: any): Promise<void> {
     return this.CardapioRepository.query(
       'delete from "Encanto".cardapio where id = $1',
-      [id],
+      [id]
     );
   }
 }

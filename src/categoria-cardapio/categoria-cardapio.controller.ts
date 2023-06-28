@@ -14,7 +14,7 @@ import { CategoriaCardapio } from '../services/Categoria/categoria-cardapio.enti
 export class CategoriaCardapioController {
   // eslint-disable-next-line prettier/prettier
   constructor(
-    private readonly categoriaCardapioService: CategoriaCardapioService,
+    private readonly categoriaCardapioService: CategoriaCardapioService
   ) {}
 
   @Get()
@@ -34,7 +34,7 @@ export class CategoriaCardapioController {
 
   @Delete(':id')
   async delete(
-    @Param('id') categoriaCardapio: CategoriaCardapio,
+    @Param('id') categoriaCardapio: CategoriaCardapio
   ): Promise<any> {
     return this.categoriaCardapioService.delete(categoriaCardapio);
   }

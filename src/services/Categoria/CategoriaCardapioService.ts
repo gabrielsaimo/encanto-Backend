@@ -20,7 +20,7 @@ export class CategoriaCardapioService {
       return value;
     }
     const response = await this.categoriaCardapioRepository.query(
-      'select * from "Encanto".categoriacardapio c',
+      'select * from "Encanto".categoriacardapio c'
     );
     console.log('banco');
     await this.cacheManager.set('CategoriaCardapio', response, 0);
@@ -31,7 +31,7 @@ export class CategoriaCardapioService {
     await this.cacheManager.del('CategoriaCardapio');
     return this.categoriaCardapioRepository.query(
       'update "Encanto".categoriacardapio set active = $1 , name = $2 where id = $3',
-      [categoriaCardapio.active, categoriaCardapio.name, categoriaCardapio.id],
+      [categoriaCardapio.active, categoriaCardapio.name, categoriaCardapio.id]
     );
   }
 
@@ -39,7 +39,7 @@ export class CategoriaCardapioService {
     await this.cacheManager.del('CategoriaCardapio');
     return this.categoriaCardapioRepository.query(
       'insert into "Encanto".categoriacardapio (active, name, id) values ($1, $2, $3)',
-      [categoriaCardapio.active, categoriaCardapio.name, categoriaCardapio.id],
+      [categoriaCardapio.active, categoriaCardapio.name, categoriaCardapio.id]
     );
   }
 
@@ -47,7 +47,7 @@ export class CategoriaCardapioService {
     await this.cacheManager.del('CategoriaCardapio');
     return this.categoriaCardapioRepository.query(
       'delete from "Encanto".categoriacardapio where id = $1',
-      [categoriaCardapio],
+      [categoriaCardapio]
     );
   }
 }

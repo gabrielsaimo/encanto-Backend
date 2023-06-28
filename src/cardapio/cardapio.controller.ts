@@ -6,7 +6,6 @@ import {
   Get,
   Post,
   Put,
-  Options,
 } from '@nestjs/common';
 import { CardapioService } from '../services/Cardapio/CardapioService';
 import { Cardapio } from '../services/Cardapio/cardapio.entity';

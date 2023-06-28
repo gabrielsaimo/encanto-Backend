@@ -7,12 +7,10 @@ import { Start } from './start.entity';
 export class StartService {
   constructor(
     @InjectRepository(Start)
-    private readonly startService: Repository<any>,
+    private readonly startService: Repository<any>
   ) {}
 
   async findAll(): Promise<any[]> {
     return ['No Ar 🚀🚀🚀'];
   }
-
-  
 }

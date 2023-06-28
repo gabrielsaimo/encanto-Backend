@@ -10,7 +10,9 @@ describe('CategoriaCardapioController', () => {
       controllers: [CategoriaCardapioController],
     }).compile();
 
-    controller = module.get<CategoriaCardapioController>(CategoriaCardapioController);
+    controller = module.get<CategoriaCardapioController>(
+      CategoriaCardapioController
+    );
   });
 
   it('should be defined', () => {
