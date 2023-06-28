@@ -21,7 +21,6 @@ export class UserService {
       `select id,name,categoria,active from "Encanto"."user"`,
     );
   }
-  
 
   async updatePassowd(categoriaCardapio: User): Promise<any> {
     return this.userRepository.query(

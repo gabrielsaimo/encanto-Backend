@@ -30,9 +30,13 @@ import { EmailService } from './services/EmailService/EmailService';
 import { WebSocketModule } from './web-socket/web-socket.module';
 import { NotificationsController } from './web-socket/web-socket.controller';
 import { NotificationsGateway } from './web-socket/notifications.gateway';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
+    CacheModule.register({
+      ttl: 1000
+    }) ,
     TypeOrmModule.forRoot(databaseConfig),
     TypeOrmModule.forFeature([Start,User,Cardapio, CategoriaCardapio,Estoque,Pedido]),
     EstoqueModule,

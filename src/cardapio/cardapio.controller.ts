@@ -17,7 +17,7 @@ export class CardapioController {
   constructor(private readonly CardapioService: CardapioService) {}
 
   @Get()
-  async findAll(): Promise<Cardapio[]> {
+  async findAll(): Promise<Cardapio> {
     JSON.stringify(this.CardapioService.findAll());
     return this.CardapioService.findAll();
   }

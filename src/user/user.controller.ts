@@ -16,7 +16,7 @@ export class UserController {
   }
   
   @Get('adm')
-  async findUserAdm(): Promise<User[]> {
+  async findUserAdm(): Promise<User> {
     return this.userService.getUserAdm();
   }
 

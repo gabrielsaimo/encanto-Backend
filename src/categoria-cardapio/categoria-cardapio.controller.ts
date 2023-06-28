@@ -18,7 +18,7 @@ export class CategoriaCardapioController {
   ) {}
 
   @Get()
-  async findAll(): Promise<CategoriaCardapio[]> {
+  async findAll(): Promise<CategoriaCardapio> {
     return this.categoriaCardapioService.findAll();
   }
 
