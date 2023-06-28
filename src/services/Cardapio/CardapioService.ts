@@ -13,8 +13,8 @@ export class CardapioService {
     @Inject(CACHE_MANAGER) private cacheManager: Cache
   ) {}
 
-  async findAll(): Promise<any> {
-    const value = await this.cacheManager.get('Cardapio');
+  async findAll(): Promise<Cardapio> {
+    const value: Cardapio = await this.cacheManager.get('Cardapio');
     if (value) {
       console.log('cache');
       return value;
@@ -28,7 +28,7 @@ export class CardapioService {
   }
 
   async update(cardapio: Cardapio): Promise<any> {
-    await this.cacheManager.reset();
+    await this.cacheManager.del('Cardapio');
     return await this.CardapioRepository.query(
       'update "Encanto".cardapio set active = $1 , name = $2 , price= $3 , description = $4 , category= $5 , sub = $6 , update_at = $7 , update_by= $8 where id = $9',
       [
@@ -46,7 +46,7 @@ export class CardapioService {
   }
 
   async create(cardapio: Cardapio): Promise<any> {
-    this.cacheManager.set('Cardapio', undefined, 0);
+    await this.cacheManager.del('Cardapio');
     return await this.CardapioRepository.query(
       'insert into "Encanto".cardapio (active, name, price, description, category, sub, update_at,update_by, id) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
       [
