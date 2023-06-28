@@ -28,7 +28,7 @@ export class CardapioService {
   }
 
   async update(cardapio: Cardapio): Promise<any> {
-    await this.cacheManager.del('Cardapio');
+    await this.cacheManager.set('Cardapio', undefined, 0);
     return this.CardapioRepository.query(
       'update "Encanto".cardapio set active = $1 , name = $2 , price= $3 , description = $4 , category= $5 , sub = $6 , update_at = $7 , update_by= $8 where id = $9',
       [
@@ -46,7 +46,7 @@ export class CardapioService {
   }
 
   async create(cardapio: Cardapio): Promise<any> {
-    await this.cacheManager.del('Cardapio');
+    await this.cacheManager.set('Cardapio', undefined, 0);
     return this.CardapioRepository.query(
       'insert into "Encanto".cardapio (active, name, price, description, category, sub, update_at,update_by, id) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
       [
@@ -64,6 +64,7 @@ export class CardapioService {
   }
 
   async delete(id: any): Promise<void> {
+    await this.cacheManager.set('Cardapio', undefined, 0);
     return this.CardapioRepository.query(
       'delete from "Encanto".cardapio where id = $1',
       [id]
