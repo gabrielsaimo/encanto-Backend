@@ -20,7 +20,7 @@ export class CategoriaCardapioService {
       return value;
     }
     const response = await this.categoriaCardapioRepository.query(
-      'select * from "Encanto".categoriacardapio c'
+      'select * from "Encanto".categoriacardapio order by id'
     );
     console.log('banco');
     await this.cacheManager.set('CategoriaCardapio', response, 0);
