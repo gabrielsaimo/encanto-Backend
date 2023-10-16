@@ -108,6 +108,12 @@ export class PedidoController {
     return this.pedidoServise.updateStatusPedidos_uni(data);
   }
 
+  @Get('pedidos/:id')
+  async getPedidos_unit(@Param('id') id: number): Promise<Pedido[]> {
+    return this.pedidoServise.getPedidos_unit(id);
+  }
+
+
   @Delete(':id')
   async delete(@Param('id') id: number): Promise<any> {
     return this.pedidoServise.delete(id);
