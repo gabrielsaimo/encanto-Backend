@@ -165,7 +165,7 @@ export class PedidoService {
 
   async createPedido(data: any): Promise<any> {
     return this.pedidoRepository.query(
-      `INSERT INTO "Encanto".pedidos_uni (id, qdt, item, valor, categoria, obs, idpedido , iditem) values ($1, $2, $3, $4, $5, $6, $7, $8)`,
+      `INSERT INTO "Encanto".pedidos_uni (id, qdt, item, valor, categoria, obs, idpedido , iditem,idmesa) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
       [
         data.id,
         data.qdt,
@@ -175,7 +175,15 @@ export class PedidoService {
         data.obs,
         data.idpedido,
         data.iditem,
+        data.idmesa,
       ]
+    );
+  }
+
+  async getPedidos_unit(id: number): Promise<any> {
+    return this.pedidoRepository.query(
+      `select * from "Encanto".pedidos_uni p where p.id = $1 ;`,
+      [id]
     );
   }
 
