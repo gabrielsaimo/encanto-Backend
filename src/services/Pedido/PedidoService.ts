@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -159,6 +160,22 @@ export class PedidoService {
     return this.pedidoRepository.query(
       `INSERT INTO "Encanto".mesa (id, nm_mesa, status,created_at,created_by) values ($1, $2, $3, $4, $5)`,
       [data.id, data.nm_mesa, data.status, data.created_at, data.created_by]
+    );
+  }
+
+  async createPedido(data: any): Promise<any> {
+    return this.pedidoRepository.query(
+      `INSERT INTO "Encanto".pedido (id, qdt, item, valor, categoria, obs, idpedido , iditem) values ($1, $2, $3, $4, $5, $6, $7, $8)`,
+      [
+        data.id,
+        data.qdt,
+        data.item,
+        data.valor,
+        data.categoria,
+        data.obs,
+        data.idpedido,
+        data.iditem,
+      ]
     );
   }
 
