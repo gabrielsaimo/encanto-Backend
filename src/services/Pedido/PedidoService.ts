@@ -179,10 +179,9 @@ export class PedidoService {
     );
   }
 
-  async getPedidos(id: number): Promise<any> {
+  async getPedidos(): Promise<any> {
     return this.pedidoRepository.query(
-      `select * from "Encanto".pedidos_uni p where p.id = $1 ;`,
-      [id]
+      `select * from "Encanto".pedidos_uni p ;`
     );
   }
 
