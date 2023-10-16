@@ -181,6 +181,13 @@ export class PedidoService {
     );
   }
 
+  async updateStatusPedidos_uni(data: Pedido): Promise<any> {
+    return this.pedidoRepository.query(
+      `update "Encanto".pedidos_uni set status = $1 , update_by = $2 ,update_at = $3 where id = $4`,
+      [data.status, data.update_by, data.update_at, data.id]
+    );
+  }
+
   async getPedidos_unit(id: number): Promise<any> {
     return this.pedidoRepository.query(
       `select * from "Encanto".pedidos_uni p where p.id = $1 ;`,
