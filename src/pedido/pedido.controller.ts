@@ -98,6 +98,11 @@ export class PedidoController {
     return this.pedidoServise.createPedido(pedido);
   }
 
+  @Get('pedidos/:id')
+  async getPedidos(@Param('id') id: number): Promise<Pedido[]> {
+    return this.pedidoServise.getPedidos(id);
+  }
+
   @Delete(':id')
   async delete(@Param('id') id: number): Promise<any> {
     return this.pedidoServise.delete(id);

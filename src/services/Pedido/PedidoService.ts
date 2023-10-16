@@ -179,6 +179,13 @@ export class PedidoService {
     );
   }
 
+  async getPedidos(id: number): Promise<any> {
+    return this.pedidoRepository.query(
+      `select * from "Encanto".pedidos_uni p where p.id = $1 ;`,
+      [id]
+    );
+  }
+
   async delete(id: number): Promise<any> {
     return this.pedidoRepository.query(
       'delete from "Encanto".pedido where id = $1',
