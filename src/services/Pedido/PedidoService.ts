@@ -214,4 +214,10 @@ export class PedidoService {
       [id]
     );
   }
+
+  async getPedidosBar(): Promise<any> {
+    return this.pedidoRepository.query(
+      `select * from "Encanto".pedidos_uni p where p.categoria in ('Bebidas','Sucos exóticos','Drinks') and p.status != 'Finalizado' ;`
+    );
+  }
 }
