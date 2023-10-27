@@ -13,7 +13,7 @@ export class PedidoService {
 
   async findPedido(): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `select * from "Encanto".pedido where status not in('Finalizado','Cancelado') ORDER BY created_at DESC;`
+      `select * from "Encanto".pedido where status not in('Concluido','Cancelado') ORDER BY created_at DESC;`
     );
   }
   async findPedidoAdm(): Promise<Pedido[]> {
@@ -55,9 +55,9 @@ export class PedidoService {
 
   async finalizarMesa(data: any): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `update "Encanto".mesa set status = 'Fechado' ,tipo_pagamento = $1 ,obs =$2 ,closed_at =$3,closed_by =$4, valor =$5 where id = $6`,
+      `update "Encanto".mesa set status = 'Fechado' ,idpedido = $1 ,obs =$2 ,closed_at =$3,closed_by =$4, valor =$5 where id = $6`,
       [
-        data.tipo_pagamento,
+        data.idpedido,
         data.obs,
         data.closed_at,
         data.closed_by,
