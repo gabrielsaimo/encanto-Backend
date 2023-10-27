@@ -113,7 +113,7 @@ export class PedidoController {
     return this.pedidoServise.getPedidos_unit(id);
   }
 
-  @Get('pedidos/bar')
+  @Get('bar')
   async getPedidosBar(): Promise<Pedido[]> {
     return this.pedidoServise.getPedidosBar();
   }
