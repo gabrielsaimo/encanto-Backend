@@ -178,6 +178,7 @@ export class PedidoService {
         data.idmesa,
         data.status,
         data.created_at,
+        data.created_by,
       ]
     );
   }
