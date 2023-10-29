@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { Start } from 'src/services/Start/start.entity';
-import { StartService } from 'src/services/Start/StartService';
+import { StartService } from 'src/services/Start/Start.service';
 
 @Controller('/')
 export class StartController {

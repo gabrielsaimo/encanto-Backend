@@ -8,7 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { Pedido } from 'src/services/Pedido/Pedido.entity';
-import { PedidoService } from 'src/services/Pedido/PedidoService';
+import { PedidoService } from 'src/services/Pedido/Pedido.service';
 
 @Controller('pedido')
 export class PedidoController {
