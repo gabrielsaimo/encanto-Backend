@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { PagamentosController } from './pagamentos.controller';
-import { PagamentosService } from 'src/services/pagamentos/Pagamentos.service';
+import { PagamentosService } from 'src/services/Pagamentos/Pagamentos.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Pagamentos } from 'src/services/pagamentos/Pagamentos.entity';
+import { Pagamentos } from 'src/services/Pagamentos/Pagamentos.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Pagamentos])],
