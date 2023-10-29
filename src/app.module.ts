@@ -31,12 +31,8 @@ import { WebSocketModule } from './web-socket/web-socket.module';
 import { NotificationsController } from './web-socket/web-socket.controller';
 import { NotificationsGateway } from './web-socket/notifications.gateway';
 import { CacheModule } from '@nestjs/cache-manager';
-import { PagamentosModule } from './pagamentos/pagamentos.module';
 import { GerenciamentoController } from './gerenciamento/gerenciamento.controller';
 import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
-import { PagamentosController } from './pagamentos/pagamentos.controller';
-import { PagamentosService } from './services/Pagamentos/pagamentos.service';
-import { Pagamentos_entity } from './services/Pagamentos/Pagamentos.entity';
 
 @Module({
   imports: [
@@ -49,7 +45,7 @@ import { Pagamentos_entity } from './services/Pagamentos/Pagamentos.entity';
       CategoriaCardapio,
       Estoque,
       Pedido,
-      Pagamentos_entity,
+      //  Pagamentos_entity,
     ]),
     EstoqueModule,
     PedidoModule,
@@ -57,7 +53,7 @@ import { Pagamentos_entity } from './services/Pagamentos/Pagamentos.entity';
     UserModule,
     EmailModule,
     WebSocketModule,
-    PagamentosModule,
+    //  PagamentosModule,
     GerenciamentoModule,
   ],
   controllers: [
@@ -68,7 +64,7 @@ import { Pagamentos_entity } from './services/Pagamentos/Pagamentos.entity';
     UserController,
     PedidoController,
     EmailController,
-    PagamentosController,
+    // PagamentosController,
     NotificationsController,
     GerenciamentoController,
   ],
@@ -79,7 +75,7 @@ import { Pagamentos_entity } from './services/Pagamentos/Pagamentos.entity';
     StartService,
     UserService,
     PedidoService,
-    PagamentosService,
+    // PagamentosService,
     EmailService,
     NotificationsGateway,
   ],

@@ -8,7 +8,7 @@ import { Pagamentos_entity } from './Pagamentos.entity';
 export class PagamentosService {
   constructor(
     @InjectRepository(Pagamentos_entity)
-    private readonly pagamentosRepository: Repository<any>
+    private readonly pagamentosRepository: Repository<Pagamentos_entity[]>
   ) {}
 
   async getPagamentos_id(id: number): Promise<Pagamentos_entity[]> {
@@ -21,7 +21,7 @@ export class PagamentosService {
     );
   }
 
-  async createPagamento(data: any): Promise<Pagamentos_entity[]> {
+  async createPagamento(data: Pagamentos_entity): Promise<Pagamentos_entity[]> {
     return this.pagamentosRepository.query(
       `INSERT INTO "Encanto".pagamentos (id,idpedido, tipo, valor, created_at, created_by)
         VALUES ($1, $2, $3, $4, $5, $6);`,

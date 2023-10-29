@@ -226,4 +226,29 @@ export class PedidoService {
       `select * from "Encanto".pedidos_uni p where p.categoria in ('Bebidas','Sucos exóticos','Drinks') and p.status != 'Finalizado' ;`
     );
   }
+
+  async getPagamentos_id(id: number): Promise<any[]> {
+    return this.pedidoRepository.query(
+      `SELECT p.*, 
+      (SELECT SUM(valor) FROM "Encanto".pagamentos WHERE idpedido = 123) AS valor_pgt
+        FROM "Encanto".pagamentos p
+        WHERE p.idpedido = $1;`,
+      [id]
+    );
+  }
+
+  async createPagamento(data: any): Promise<any[]> {
+    return this.pedidoRepository.query(
+      `INSERT INTO "Encanto".pagamentos (id,idpedido, tipo, valor, created_at, created_by)
+        VALUES ($1, $2, $3, $4, $5, $6);`,
+      [
+        data.id,
+        data.idpedido,
+        data.tipo,
+        data.valor,
+        data.created_at,
+        data.created_by,
+      ]
+    );
+  }
 }

@@ -127,4 +127,14 @@ export class PedidoController {
   async deleteMesa(@Param('id') id: number): Promise<any> {
     return this.pedidoServise.deleteMesa(id);
   }
+
+  @Get('pagamentos/:id')
+  async getPagamentos_id(@Param('id') id: number): Promise<any[]> {
+    return this.pedidoServise.getPagamentos_id(id);
+  }
+
+  @Put('pagamentos')
+  async createPagamento(@Body() data: any): Promise<any[]> {
+    return this.pedidoServise.createPagamento(data);
+  }
 }
