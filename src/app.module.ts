@@ -34,6 +34,9 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { PagamentosModule } from './pagamentos/pagamentos.module';
 import { GerenciamentoController } from './gerenciamento/gerenciamento.controller';
 import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
+import { PagamentosController } from './pagamentos/pagamentos.controller';
+import { PagamentosService } from './services/Pagamentos/Pagamentos.service';
+import { Pagamentos } from './services/Pagamentos/Pagamentos.entity';
 
 @Module({
   imports: [
@@ -46,6 +49,7 @@ import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
       CategoriaCardapio,
       Estoque,
       Pedido,
+      Pagamentos,
     ]),
     EstoqueModule,
     PedidoModule,
@@ -64,6 +68,7 @@ import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
     UserController,
     PedidoController,
     EmailController,
+    PagamentosController,
     NotificationsController,
     GerenciamentoController,
   ],
@@ -74,6 +79,7 @@ import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
     StartService,
     UserService,
     PedidoService,
+    PagamentosService,
     EmailService,
     NotificationsGateway,
   ],
