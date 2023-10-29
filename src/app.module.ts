@@ -31,12 +31,12 @@ import { WebSocketModule } from './web-socket/web-socket.module';
 import { NotificationsController } from './web-socket/web-socket.controller';
 import { NotificationsGateway } from './web-socket/notifications.gateway';
 import { CacheModule } from '@nestjs/cache-manager';
-//import { PagamentosModule } from './pagamentos/pagamentos.module';
+import { PagamentosModule } from './pagamentos/pagamentos.module';
 import { GerenciamentoController } from './gerenciamento/gerenciamento.controller';
 import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
-//import { PagamentosController } from './pagamentos/pagamentos.controller';
-//import { PagamentosService } from './services/Pagamentos/Pagamentos.service';
-//import { Pagamentos } from './services/Pagamentos/Pagamentos.entity';
+import { PagamentosController } from './pagamentos/pagamentos.controller';
+import { PagamentosService } from './services/Pagamentos/pagamentos.service';
+import { Pagamentos_entity } from './services/Pagamentos/Pagamentos.entity';
 
 @Module({
   imports: [
@@ -49,7 +49,7 @@ import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
       CategoriaCardapio,
       Estoque,
       Pedido,
-      //Pagamentos,
+      Pagamentos_entity,
     ]),
     EstoqueModule,
     PedidoModule,
@@ -57,7 +57,7 @@ import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
     UserModule,
     EmailModule,
     WebSocketModule,
-    // PagamentosModule,
+    PagamentosModule,
     GerenciamentoModule,
   ],
   controllers: [
@@ -68,7 +68,7 @@ import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
     UserController,
     PedidoController,
     EmailController,
-    //  PagamentosController,
+    PagamentosController,
     NotificationsController,
     GerenciamentoController,
   ],
@@ -79,9 +79,10 @@ import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
     StartService,
     UserService,
     PedidoService,
-    // PagamentosService,
+    PagamentosService,
     EmailService,
     NotificationsGateway,
+    PagamentosService,
   ],
 })
 export class AppModule {}
