@@ -11,7 +11,7 @@ export class PagamentosService {
     private readonly pagamentosRepository: Repository<any>
   ) {}
 
-  async getPagamentos_id(id: number): Promise<any> {
+  async getPagamentos_id(id: number): Promise<Pagamentos[]> {
     return this.pagamentosRepository.query(
       `SELECT p.*, 
       (SELECT SUM(valor) FROM "Encanto".pagamentos WHERE idpedido = 123) AS valor_pgt
@@ -21,7 +21,7 @@ export class PagamentosService {
     );
   }
 
-  async createPagamento(data: any): Promise<any> {
+  async createPagamento(data: any): Promise<Pagamentos[]> {
     return this.pagamentosRepository.query(
       `INSERT INTO "Encanto".pagamentos (id,idpedido, tipo, valor, created_at, created_by)
         VALUES ($1, $2, $3, $4, $5, $6);`,
