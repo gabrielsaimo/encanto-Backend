@@ -82,7 +82,6 @@ import { Pagamentos_entity } from './services/Pagamentos/Pagamentos.entity';
     PagamentosService,
     EmailService,
     NotificationsGateway,
-    PagamentosService,
   ],
 })
 export class AppModule {}
