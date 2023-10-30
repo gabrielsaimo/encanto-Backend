@@ -230,7 +230,7 @@ export class PedidoService {
   async getPagamentos_id(id: number): Promise<any[]> {
     return this.pedidoRepository.query(
       `SELECT p.*, 
-      (SELECT SUM(valor) FROM "Encanto".pagamentos WHERE idpedido = 123) AS valor_pgt
+      (SELECT SUM(valor) FROM "Encanto".pagamentos WHERE idpedido = $1) AS valor_pgt
         FROM "Encanto".pagamentos p
         WHERE p.idpedido = $1;`,
       [id]
