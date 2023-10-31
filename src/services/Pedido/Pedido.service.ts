@@ -223,7 +223,7 @@ export class PedidoService {
 
   async getPedidosBar(): Promise<any> {
     return this.pedidoRepository.query(
-      `select p.*,p2.id as idPtincipal from "Encanto".pedidos_uni p left join pedido p2 on (p.idpedido=p2.pedidos) where p.categoria in ('Bebidas','Sucos exóticos','Drinks') and p.status != 'Finalizado';`
+      `select p.*,p2.id as idPtincipal from "Encanto".pedidos_uni p left join "Encanto".pedido p2 on (p.idpedido=p2.pedidos) where p.categoria in ('Bebidas','Sucos exóticos','Drinks') and p.status != 'Finalizado';`
     );
   }
 
