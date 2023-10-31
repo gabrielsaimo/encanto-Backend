@@ -29,4 +29,7 @@ export class Cardapio {
 
   @Column()
   update_by: string;
+
+  @Column()
+  imagem: string;
 }
