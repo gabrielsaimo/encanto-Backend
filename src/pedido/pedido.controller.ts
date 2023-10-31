@@ -137,4 +137,9 @@ export class PedidoController {
   async createPagamento(@Body() data: any): Promise<any[]> {
     return this.pedidoServise.createPagamento(data);
   }
+
+  @Get('pagamentos/verify/:id')
+  async verifyPagamento(@Param('id') id: number): Promise<any[]> {
+    return this.pedidoServise.verificaStatusPedido(id);
+  }
 }

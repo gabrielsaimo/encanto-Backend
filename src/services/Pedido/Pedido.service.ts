@@ -251,4 +251,16 @@ export class PedidoService {
       ]
     );
   }
+
+  async verificaStatusPedido(id: number): Promise<any[]> {
+    return this.pedidoRepository.query(
+      `SELECT pu.status
+      FROM "Encanto".pedido p
+      JOIN "Encanto".pedidos_uni pu ON (p.pedidos = pu.idpedido)
+      WHERE p.pedidos = $1
+      GROUP BY pu.status
+      HAVING COUNT(DISTINCT pu.status) = 1;`,
+      [id]
+    );
+  }
 }
