@@ -40,4 +40,19 @@ export class CardapioController {
   async imagem(@Body() imagem: any): Promise<any> {
     return this.CardapioService.updateImage(imagem);
   }
+
+  @Post('deleteimagem')
+  async deleteImagem(@Body() imagem: any): Promise<any> {
+    return this.CardapioService.deleteImage(imagem);
+  }
+
+  @Post('imagemsub')
+  async imagemSub(@Body() imagem: any): Promise<any> {
+    return this.CardapioService.updateImageId(imagem);
+  }
+
+  @Post('InsertImg')
+  async updateImg(@Body() cardapio: Cardapio): Promise<any> {
+    return this.CardapioService.createImage(cardapio);
+  }
 }

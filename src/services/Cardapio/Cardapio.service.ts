@@ -78,4 +78,36 @@ export class CardapioService {
       [data.imagem, data.id]
     );
   }
+
+  async createImage(data: any): Promise<any> {
+    await this.cacheManager.del('Cardapio');
+    return await this.CardapioRepository.query(
+      `INSERT INTO "Encanto".assetes
+      (id, dados, tipo, idreq)
+      VALUES(nextval('assetes_id_seq'::regclass), decode($2,'hex'), $3, $4);`,
+      [null, data.imagem, data.id, data.idreq]
+    );
+  }
+
+  async deleteImage(id: any): Promise<any> {
+    await this.cacheManager.del('Cardapio');
+    return await this.CardapioRepository.query(
+      'update "Encanto".assetes set imagem = null where id = $1',
+      [id]
+    );
+  }
+
+  async findImageReq(id: any): Promise<any> {
+    return await this.CardapioRepository.query(
+      `select encode(dados, 'base64') as imagem from "Encanto".assetes where idreq = $1`,
+      [id]
+    );
+  }
+
+  async updateImageId(data: any): Promise<any> {
+    return await this.CardapioRepository.query(
+      'update "Encanto".assetes set dados = $1 where id = $2',
+      [data.imagem, data.id]
+    );
+  }
 }
