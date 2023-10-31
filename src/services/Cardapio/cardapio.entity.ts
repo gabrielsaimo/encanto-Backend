@@ -31,5 +31,5 @@ export class Cardapio {
   update_by: string;
 
   @Column()
-  imagem: any;
+  imagem: string;
 }
