@@ -35,4 +35,9 @@ export class CardapioController {
   async delete(@Param('id') id: any): Promise<void> {
     return this.CardapioService.delete(id);
   }
+
+  @Post('imagem')
+  async imagem(@Body() imagem: any): Promise<any> {
+    return this.CardapioService.updateImage(imagem);
+  }
 }
