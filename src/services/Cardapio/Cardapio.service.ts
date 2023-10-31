@@ -1,12 +1,25 @@
 /* eslint-disable prettier/prettier */
-import { Inject, Injectable } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  Inject,
+  Injectable,
+  NestInterceptor,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Cardapio } from './cardapio.entity';
 import { Cache } from 'cache-manager';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Observable } from 'rxjs';
 @Injectable()
-export class CardapioService {
+export class CardapioService implements NestInterceptor {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    const response = context.switchToHttp().getResponse();
+    response.setTimeout(600000);
+
+    return next.handle();
+  }
   constructor(
     @InjectRepository(Cardapio)
     private readonly CardapioRepository: Repository<any>,
