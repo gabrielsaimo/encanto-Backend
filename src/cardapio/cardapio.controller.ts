@@ -55,4 +55,9 @@ export class CardapioController {
   async updateImg(@Body() cardapio: Cardapio): Promise<any> {
     return this.CardapioService.createImage(cardapio);
   }
+
+  @Get('imagem/:id')
+  async findImg(@Param('id') id: any): Promise<any> {
+    return this.CardapioService.findImageReq(id);
+  }
 }
