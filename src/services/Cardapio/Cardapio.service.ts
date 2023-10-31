@@ -20,7 +20,7 @@ export class CardapioService {
       return value;
     }
     const response = await this.CardapioRepository.query(
-      'select * from "Encanto".cardapio c order by id'
+      `select c.*,encode(c.imagem, 'base64') as img from "Encanto".cardapio c order by id`
     );
     console.log('banco');
     await this.cacheManager.set('Cardapio', response, 0);
