@@ -1,4 +1,5 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { TimeoutMiddleware } from './timeout.middleware';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CategoriaCardapio } from './services/Categoria/categoria-cardapio.entity';
 import { CategoriaCardapioService } from './services/Categoria/CategoriaCardapio.service';
@@ -80,4 +81,8 @@ import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
     NotificationsGateway,
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(TimeoutMiddleware).forRoutes('*');
+  }
+}
