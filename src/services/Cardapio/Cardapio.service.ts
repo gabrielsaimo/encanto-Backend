@@ -88,7 +88,7 @@ export class CardapioService {
     return await this.CardapioRepository.query(
       `INSERT INTO "Encanto".assetes
       (id, dados, tipo, idreq)
-      VALUES(nextval('assetes_id_seq'::regclass), decode($2,'hex'), $3, $4);`,
+      VALUES(nextval('assetes_id_seq'::regclass), $2, $3, $4);`,
       [null, data.imagem, data.id, data.idreq]
     );
   }
