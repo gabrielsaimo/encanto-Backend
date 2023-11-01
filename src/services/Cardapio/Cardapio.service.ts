@@ -110,7 +110,7 @@ export class CardapioService {
 
   async updateImageId(data: any): Promise<any> {
     return await this.CardapioRepository.query(
-      'update "Encanto".assetes set dados = $1 where id = $2',
+      'update "Encanto".assetes set dados = $1 where idreq = $2',
       [data.imagem, data.id]
     );
   }
