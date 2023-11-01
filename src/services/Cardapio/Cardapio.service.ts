@@ -21,7 +21,7 @@ export class CardapioService {
       return value;
     }
     const response = await this.CardapioRepository.query(
-      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, encode(a.dados, 'base64') as imagem
+      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, encode(a.dados, 'base64') as img
       FROM "Encanto".cardapio c
       LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq)
       ORDER BY c.id`
