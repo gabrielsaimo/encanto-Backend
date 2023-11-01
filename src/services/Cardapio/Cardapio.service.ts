@@ -21,7 +21,10 @@ export class CardapioService {
       return value;
     }
     const response = await this.CardapioRepository.query(
-      `SELECT id, "name", category, description, sub, price, active, update_at, update_by, encode(imagem, 'base64') as img from "Encanto".cardapio c order by id`
+      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, encode(a.dados, 'base64') as imagem
+      FROM "Encanto".cardapio c
+      LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq)
+      ORDER BY c.id`
     );
     console.log('banco');
     await this.cacheManager.set('Cardapio', response, 0);
