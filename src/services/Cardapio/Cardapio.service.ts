@@ -1,8 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {
-  Inject,
-  Injectable,
-} from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Cardapio } from './cardapio.entity';
@@ -10,8 +7,7 @@ import { Cache } from 'cache-manager';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 
 @Injectable()
-export class CardapioService   {
- 
+export class CardapioService {
   constructor(
     @InjectRepository(Cardapio)
     private readonly CardapioRepository: Repository<any>,
@@ -104,7 +100,7 @@ export class CardapioService   {
 
   async findImageReq(id: any): Promise<any> {
     return await this.CardapioRepository.query(
-      `select encode(dados, 'base64') as imagem from "Encanto".assetes where idreq = $1`,
+      `select encode(a.dados, 'base64') as imagem from "Encanto".assetes a where idreq = $1`,
       [id]
     );
   }
