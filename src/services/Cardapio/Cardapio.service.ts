@@ -21,7 +21,12 @@ export class CardapioService {
       return value;
     }
     const response = await this.CardapioRepository.query(
-      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active FROM "Encanto".cardapio c`
+      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active,
+      STRING_AGG(a.id::TEXT, ', ') AS ids
+      FROM "Encanto".cardapio c
+      LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq)
+      GROUP BY c.id, c."name", c.category, c.description, c.sub, c.price, c.active
+      ORDER BY c.id;`
     );
     console.log('banco');
     await this.cacheManager.set('Cardapio', response, 0);
