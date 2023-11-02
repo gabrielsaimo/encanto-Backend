@@ -21,7 +21,7 @@ export class CardapioService {
       return value;
     }
     const response = await this.CardapioRepository.query(
-      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, 
+      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, a.id as idimg,
       STRING_AGG(encode(a.dados, 'base64'), ', ') AS img
       FROM "Encanto".cardapio c
       LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq)
@@ -90,8 +90,8 @@ export class CardapioService {
     return await this.CardapioRepository.query(
       `INSERT INTO "Encanto".assetes
       (id, dados, tipo, idreq)
-      VALUES(nextval('assetes_id_seq'::regclass), $1, $2, $3);`,
-      [data.imagem, data.tipo, data.idreq]
+      VALUES($1, $2, $3, $4);`,
+      [data.id, data.imagem, data.tipo, data.idreq]
     );
   }
 
@@ -112,7 +112,7 @@ export class CardapioService {
 
   async updateImageId(data: any): Promise<any> {
     return await this.CardapioRepository.query(
-      'update "Encanto".assetes set dados = $1 where idreq = $2',
+      'update "Encanto".assetes set dados = $1 where id = $2',
       [data.imagem, data.idreq]
     );
   }
