@@ -25,7 +25,7 @@ export class CardapioService {
       STRING_AGG(encode(a.dados, 'base64'), ', ') AS img
       FROM "Encanto".cardapio c
       LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq)
-      GROUP BY c.id, c."name", c.category, c.description, c.sub, c.price, c.active
+      GROUP BY c.id, c."name", c.category, c.description, c.sub, c.price, c.active, a.id
       ORDER BY c.id`
     );
     console.log('banco');
