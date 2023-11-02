@@ -21,11 +21,12 @@ export class CardapioService {
       return value;
     }
     const response = await this.CardapioRepository.query(
-      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, a.id as idimg,
+      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active,
+      STRING_AGG(a.id::TEXT, ', ') AS ids,
       STRING_AGG(encode(a.dados, 'base64'), ', ') AS img
       FROM "Encanto".cardapio c
       LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq)
-      GROUP BY c.id, c."name", c.category, c.description, c.sub, c.price, c.active, a.id
+      GROUP BY c.id, c."name", c.category, c.description, c.sub, c.price, c.active
       ORDER BY c.id`
     );
     console.log('banco');
