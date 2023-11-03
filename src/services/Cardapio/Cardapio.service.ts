@@ -87,7 +87,7 @@ export class CardapioService {
     );
   }
 
-  async createImage(data: any): Promise<any> {
+  async createImage(data: any): Promise<Aseetes> {
     await this.cacheManager.del('Cardapio');
     return await this.CardapioRepository.query(
       `INSERT INTO "Encanto".assetes
@@ -107,7 +107,7 @@ export class CardapioService {
 
   async findImageReq(id: any): Promise<Aseetes> {
     return await this.CardapioRepository.query(
-      `select idreq  ,encode(a.dados, 'base64') as imagem from "Encanto".assetes a where idreq = $1`,
+      `select id, idreq, encode(a.dados, 'base64') as imagem from "Encanto".assetes a where idreq = $1`,
       [id]
     );
   }
