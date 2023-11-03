@@ -97,10 +97,10 @@ export class CardapioService {
     );
   }
 
-  async deleteImage(id: any): Promise<any> {
+  async deleteImage(id: any): Promise<Aseetes> {
     await this.cacheManager.del('Cardapio');
     return await this.CardapioRepository.query(
-      'update "Encanto".assetes set imagem = null where id = $1',
+      'Delete from "Encanto".assetes where id = $1',
       [id]
     );
   }
