@@ -1,3 +1,4 @@
+// eslint-disable-next-line prettier/prettier
 import {
   Body,
   Param,
@@ -12,7 +13,6 @@ import { Cardapio } from '../services/Cardapio/cardapio.entity';
 
 @Controller('cardapio')
 export class CardapioController {
-  // eslint-disable-next-line prettier/prettier
   constructor(private readonly CardapioService: CardapioService) {}
 
   @Get()
