@@ -42,7 +42,7 @@ export class CardapioController {
   }
 
   @Delete('deleteimagem/:id')
-  async deleteImagem(@Param() id: number): Promise<any> {
+  async deleteImagem(@Param('id') id: number): Promise<any> {
     return this.CardapioService.deleteImage(id);
   }
 

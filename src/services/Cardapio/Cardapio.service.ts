@@ -97,7 +97,7 @@ export class CardapioService {
     );
   }
 
-  async deleteImage(id: number): Promise<Aseetes> {
+  async deleteImage(id: any): Promise<Aseetes> {
     await this.cacheManager.del('Assetes');
     return await this.CardapioRepository.query(
       'Delete from "Encanto".assetes where id = $1',
@@ -106,6 +106,7 @@ export class CardapioService {
   }
 
   async findImageReq(id: any): Promise<Aseetes> {
+    await this.cacheManager.del('Assetes');
     return await this.CardapioRepository.query(
       `select id, idreq, encode(a.dados, 'base64') as imagem from "Encanto".assetes a where idreq = $1`,
       [id]
