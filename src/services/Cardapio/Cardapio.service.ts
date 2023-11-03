@@ -11,7 +11,7 @@ import { Aseetes } from './assetes.entity';
 export class CardapioService {
   constructor(
     @InjectRepository(Cardapio)
-   // @InjectRepository(Aseetes)
+    @InjectRepository(Aseetes)
     private readonly CardapioRepository: Repository<any>,
     @Inject(CACHE_MANAGER) private cacheManager: Cache
   ) {}
