@@ -105,7 +105,7 @@ export class CardapioService {
 
   async findImageReq(id: any): Promise<any> {
     return await this.CardapioRepository.query(
-      `select encode(a.dados, 'base64') as imagem from "Encanto".assetes a where idreq = $1`,
+      `select idreq  ,encode(a.dados, 'base64') as imagem from "Encanto".assetes a where idreq = $1`,
       [id]
     );
   }
