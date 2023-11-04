@@ -17,13 +17,11 @@ export class CategoriaCardapioService {
   async findAll(): Promise<CategoriaCardapio> {
     const value: any = await this.cacheManager.get('CategoriaCardapio');
     if (value) {
-      console.log('cache');
       return value;
     }
     const response = await this.categoriaCardapioRepository.query(
       'select * from "Encanto".categoriacardapio order by id'
     );
-    console.log('banco');
     await this.cacheManager.set('CategoriaCardapio', response, 0);
     return response;
   }
