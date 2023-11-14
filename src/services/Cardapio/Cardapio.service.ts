@@ -31,6 +31,7 @@ export class CardapioService {
       ORDER BY c.id;`
     );
     console.log('banco');
+    
     await this.cacheManager.set('Cardapio', response, 0);
     return response;
   }
