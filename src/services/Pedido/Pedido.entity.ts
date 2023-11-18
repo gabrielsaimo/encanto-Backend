@@ -52,8 +52,8 @@ export class Pedido {
   finished_at: string;
 
   @Column()
-  obs_cancel: string;
+  taxa: number;
 
   @Column()
-  taxa: string;
+  obs_cancel: string;
 }
