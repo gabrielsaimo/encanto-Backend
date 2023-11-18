@@ -147,4 +147,9 @@ export class PedidoController {
   async getRelatorioPagamentos(@Body() data: any): Promise<any[]> {
     return this.pedidoServise.getRelatorioPagamentos(data);
   }
+
+  @Get('/relatorio/pedidos')
+  async getRelatorioPedidosUni(@Body() data: any): Promise<any[]> {
+    return this.pedidoServise.getRelatorioPedidosUni(data);
+  }
 }

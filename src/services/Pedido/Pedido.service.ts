@@ -293,4 +293,15 @@ export class PedidoService {
       [data.data_inicial, data.data_final]
     );
   }
+
+  getRelatorioPedidosUni(data: any): Promise<any[]> {
+    return this.pedidoRepository.query(
+      `SELECT subquery.*, 
+      SUM(subquery.valor_total_uni) OVER () AS soma_total
+    FROM (
+      SELECT pu.item , SUM(pu.qdt) as qdt_vendido, sum(pu.valor) as valor_total_uni from "Encanto".pedidos_uni pu where pu.created_at between $1 AND $2 group by pu.qdt,pu.item
+          ) AS subquery;`,
+      [data.data_inicial, data.data_final]
+    );
+  }
 }
