@@ -4,6 +4,7 @@ import {
   Controller,
   Delete,
   Get,
+  Query,
   Post,
   Put,
 } from '@nestjs/common';
@@ -144,12 +145,18 @@ export class PedidoController {
   }
 
   @Get('/relatorio/vendas')
-  async getRelatorioPagamentos(@Body() data: any): Promise<any[]> {
-    return this.pedidoServise.getRelatorioPagamentos(data);
+  async getRelatorioPagamentos(
+    @Query('data_inicial') dataInicial: any,
+    @Query('data_final') dataFinal: any
+  ): Promise<any[]> {
+    return this.pedidoServise.getRelatorioPagamentos(dataInicial, dataFinal);
   }
 
   @Get('/relatorio/pedidos')
-  async getRelatorioPedidosUni(@Body() data: any): Promise<any[]> {
-    return this.pedidoServise.getRelatorioPedidosUni(data);
+  async getRelatorioPedidosUni(
+    @Query('data_inicial') dataInicial: any,
+    @Query('data_final') dataFinal: any
+  ): Promise<any[]> {
+    return this.pedidoServise.getRelatorioPedidosUni(dataInicial, dataFinal);
   }
 }
