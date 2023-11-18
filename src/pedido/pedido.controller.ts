@@ -142,4 +142,9 @@ export class PedidoController {
   async verifyPagamento(@Param('id') id: number): Promise<any[]> {
     return this.pedidoServise.verificaStatusPedido(id);
   }
+
+  @Get('/relatorio/vendas')
+  async getRelatorioPagamentos(@Body() data: any): Promise<any[]> {
+    return this.pedidoServise.getRelatorioPagamentos(data);
+  }
 }

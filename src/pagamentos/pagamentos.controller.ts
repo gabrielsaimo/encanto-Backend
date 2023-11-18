@@ -14,4 +14,9 @@ export class PagamentosController {
   async createPagamento(@Body() data: any): Promise<any[]> {
     return this.pagamentosService.createPagamento(data);
   }
+
+  @Get('/relatorio/vendas')
+  async getRelatorioPagamentos(@Body() data: any): Promise<any[]> {
+    return this.pagamentosService.getRelatorioPagamentos(data);
+  }
 }

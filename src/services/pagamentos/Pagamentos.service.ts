@@ -35,4 +35,34 @@ export class PagamentosService {
       ]
     );
   }
-}   
+
+  async getRelatorioPagamentos(data: any): Promise<any[]> {
+    return this.pagamentosRepository.query(
+      `SELECT subquery.*, 
+      SUM(subquery.total_pago) OVER () AS soma_total
+      FROM (
+      SELECT p.id,
+          p.status,
+          p.created_at,
+          p.created_by as garcom,
+          p.id_mesa,
+          p.mesa,
+          p.valor,
+          p.obs,
+          p.pedidos,
+          p.acepted_at,
+          p.acepted_by as cozinha,
+          STRING_AGG(p2.tipo::TEXT, ', ') AS tpPG,
+          STRING_AGG(p2.valor::TEXT, ', ') AS valorPg,
+          p2.created_by as recebido_por,
+          SUM(CAST(valor_individual AS NUMERIC)) AS total_pago
+        FROM "Encanto".pedido p
+        LEFT JOIN "Encanto".pedidos_uni pu ON p.pedidos = pu.idpedido
+        JOIN "Encanto".pagamentos p2 ON p.id = p2.idpedido
+        CROSS JOIN LATERAL unnest(string_to_array(p2.valor::TEXT, ', ')) AS valor_individual
+        WHERE p2.created_at BETWEEN '$1 00:00:00.001' AND '$2 23:59:59.999'
+        GROUP BY p.id, p.status, p.created_at, p.created_by, p.id_mesa, p.mesa, p.valor, p.obs, p.pedidos, p.acepted_at, p.acepted_by, p2.created_by) AS subquery;`,
+      [data.data_inicial, data.data_final]
+    );
+  }
+}
