@@ -91,13 +91,14 @@ export class PedidoService {
   async postPedidoStatus(data: Pedido): Promise<Pedido[]> {
     if (data.status !== 'Em Preparo' && data.status !== 'Em Cancelamento') {
       return this.pedidoRepository.query(
-        `update "Encanto".pedido set status = $1 , update_by = $2 ,update_at = $3,finished_by = $4, finished_at = $5 where id = $6`,
+        `update "Encanto".pedido set status = $1 , update_by = $2 ,update_at = $3,finished_by = $4, finished_at = $5, taxa = $6 where id = $7`,
         [
           data.status,
           data.update_by,
           data.update_at,
           data.finished_by,
           data.finished_at,
+          data.taxa,
           data.id,
         ]
       );
