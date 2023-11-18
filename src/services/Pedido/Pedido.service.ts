@@ -289,7 +289,6 @@ export class PedidoService {
           p2.created_by as recebido_por,
           SUM(CAST(valor_individual AS NUMERIC)) AS total_pago
         FROM "Encanto".pedido p
-        LEFT JOIN "Encanto".pedidos_uni pu ON p.pedidos = pu.idpedido
         JOIN "Encanto".pagamentos p2 ON p.id = p2.idpedido
         CROSS JOIN LATERAL unnest(string_to_array(p2.valor::TEXT, ', ')) AS valor_individual
         WHERE p2.tipo in ('${tipo.split(',').join("','")}') and p2.created_at BETWEEN $1  AND $2
