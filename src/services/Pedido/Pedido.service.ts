@@ -303,7 +303,7 @@ export class PedidoService {
       `SELECT subquery.*, 
       SUM(subquery.valor_total_uni) OVER () AS soma_total
     FROM (
-      SELECT pu.item , SUM(pu.qdt) as qdt_vendido, sum(pu.valor) as valor_total_uni from "Encanto".pedidos_uni pu where pu.created_at between $1 AND $2 group by pu.qdt,pu.item
+      SELECT pu.item , SUM(pu.qdt) as qdt_vendido, sum(pu.valor) as valor_total_uni from "Encanto".pedidos_uni pu where pu.created_at between $1 AND $2 group by pu.qdt,pu.item order by qdt_vendido desc 
           ) AS subquery;`,
       [data_inicial, data_final]
     );
