@@ -282,6 +282,7 @@ export class PedidoService {
           p.mesa,
           p.valor,
           p.obs,
+          p.taxa,
           p.pedidos,
           p.acepted_at,
           p.acepted_by as cozinha,
@@ -293,7 +294,7 @@ export class PedidoService {
         JOIN "Encanto".pagamentos p2 ON p.id = p2.idpedido
         CROSS JOIN LATERAL unnest(string_to_array(p2.valor::TEXT, ', ')) AS valor_individual
         WHERE p2.tipo in ('${tipo.split(',').join("','")}') and p2.created_at BETWEEN $1  AND $2
-        GROUP BY p.id, p.status, p.created_at, p.created_by, p.id_mesa, p.mesa, p.valor, p.obs, p.pedidos, p.acepted_at, p.acepted_by, p2.created_by order by p.acepted_at desc ) AS subquery;`,
+        GROUP BY p.id, p.status, p.created_at, p.created_by, p.id_mesa, p.mesa, p.valor, p.obs, p.pedidos, p.acepted_at, p.acepted_by, p2.created_by ,p.taxa order by p.acepted_at desc ) AS subquery;`,
       [data_inicial, data_final]
     );
   }
