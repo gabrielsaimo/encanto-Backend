@@ -147,9 +147,14 @@ export class PedidoController {
   @Get('/relatorio/vendas')
   async getRelatorioPagamentos(
     @Query('data_inicial') dataInicial: any,
-    @Query('data_final') dataFinal: any
+    @Query('data_final') dataFinal: any,
+    @Query('tipo') tipo: any
   ): Promise<any[]> {
-    return this.pedidoServise.getRelatorioPagamentos(dataInicial, dataFinal);
+    return this.pedidoServise.getRelatorioPagamentos(
+      dataInicial,
+      dataFinal,
+      tipo
+    );
   }
 
   @Get('/relatorio/pedidos')

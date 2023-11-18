@@ -266,7 +266,8 @@ export class PedidoService {
 
   async getRelatorioPagamentos(
     data_inicial: any,
-    data_final: any
+    data_final: any,
+    tipo: any
   ): Promise<any[]> {
     return this.pedidoRepository.query(
       `SELECT subquery.*, 
@@ -291,7 +292,7 @@ export class PedidoService {
         LEFT JOIN "Encanto".pedidos_uni pu ON p.pedidos = pu.idpedido
         JOIN "Encanto".pagamentos p2 ON p.id = p2.idpedido
         CROSS JOIN LATERAL unnest(string_to_array(p2.valor::TEXT, ', ')) AS valor_individual
-        WHERE p2.created_at BETWEEN $1  AND $2
+        WHERE p2.tipo in ('${tipo.split(',').join("','")}') and p2.created_at BETWEEN $1  AND $2
         GROUP BY p.id, p.status, p.created_at, p.created_by, p.id_mesa, p.mesa, p.valor, p.obs, p.pedidos, p.acepted_at, p.acepted_by, p2.created_by order by p.acepted_at desc ) AS subquery;`,
       [data_inicial, data_final]
     );
