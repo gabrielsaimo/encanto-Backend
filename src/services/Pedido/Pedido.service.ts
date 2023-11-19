@@ -272,8 +272,7 @@ export class PedidoService {
   ): Promise<any[]> {
     return this.pedidoRepository.query(
       `SELECT subquery.*,
-      SUM(subquery.total_pago) OVER () AS soma_total,
-      SUM(subquery.total_cortesia) OVER () AS soma_cortesia
+      SUM(subquery.total_pago) OVER () AS soma_total
 FROM (
    SELECT p.id,
           p.status,
