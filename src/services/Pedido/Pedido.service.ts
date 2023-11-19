@@ -271,10 +271,11 @@ export class PedidoService {
     tipo: any
   ): Promise<any[]> {
     return this.pedidoRepository.query(
-      `SELECT subquery.*, 
-      SUM(subquery.total_pago) OVER () AS soma_total
-      FROM (
-      SELECT p.id,
+      `SELECT subquery.*,
+      SUM(subquery.total_pago) OVER () AS soma_total,
+      SUM(subquery.total_cortesia) OVER () AS soma_cortesia
+FROM (
+   SELECT p.id,
           p.status,
           p.created_at,
           p.created_by as garcom,
@@ -289,12 +290,15 @@ export class PedidoService {
           STRING_AGG(p2.tipo::TEXT, ', ') AS tpPG,
           STRING_AGG(p2.valor::TEXT, ', ') AS valorPg,
           p2.created_by as recebido_por,
-          SUM(CAST(valor_individual AS NUMERIC)) AS total_pago
-        FROM "Encanto".pedido p
-        JOIN "Encanto".pagamentos p2 ON p.id = p2.idpedido
-        CROSS JOIN LATERAL unnest(string_to_array(p2.valor::TEXT, ', ')) AS valor_individual
-        WHERE p2.tipo in ('${tipo.split(',').join("','")}') and p2.created_at BETWEEN $1  AND $2
-        GROUP BY p.id, p.status, p.created_at, p.created_by, p.id_mesa, p.mesa, p.valor, p.obs, p.pedidos, p.acepted_at, p.acepted_by, p2.created_by ,p.taxa order by p.acepted_at desc ) AS subquery;`,
+          SUM(CAST(valor_individual AS NUMERIC)) AS total_pago,
+          SUM(CASE WHEN p2.tipo = 'Cortesia' THEN CAST(valor_individual AS NUMERIC) ELSE 0 END) AS total_cortesia
+   FROM "Encanto".pedido p
+   JOIN "Encanto".pagamentos p2 ON p.id = p2.idpedido
+   CROSS JOIN LATERAL unnest(string_to_array(p2.valor::TEXT, ', ')) AS valor_individual
+   WHERE p2.tipo IN ('${tipo.split(',').join("','")}') AND p2.created_at BETWEEN $1 AND $2
+   GROUP BY p.id, p.status, p.created_at, p.created_by, p.id_mesa, p.mesa, p.valor, p.obs, p.pedidos, p.acepted_at, p.acepted_by, p2.created_by, p.taxa
+   ORDER BY p.acepted_at DESC
+) AS subquery;`,
       [data_inicial, data_final]
     );
   }
