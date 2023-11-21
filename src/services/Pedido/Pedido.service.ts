@@ -315,4 +315,42 @@ FROM (
       [data_inicial, data_final]
     );
   }
+  getGraficoMesses(messes: any): Promise<any[]> {
+    return this.pedidoRepository.query(
+      `SELECT 
+      EXTRACT(MONTH FROM DATE_TRUNC('month', subquery.created_at)) AS numero_mes,
+      SUM(subquery.total_pago) AS soma_total
+  FROM (
+      SELECT 
+          p.id,
+          p.status,
+          p.created_at,
+          p.created_by as garcom,
+          p.id_mesa,
+          p.mesa,
+          p.valor,
+          p.obs,
+          p.taxa,
+          p.pedidos,
+          p.acepted_at,
+          p.acepted_by as cozinha,
+          STRING_AGG(p2.tipo::TEXT, ', ') AS tpPG,
+          STRING_AGG(p2.valor::TEXT, ', ') AS valorPg,
+          p2.created_by as recebido_por,
+          SUM(CAST(valor_individual AS NUMERIC)) AS total_pago,
+          SUM(CASE WHEN p2.tipo = 'Cortesia' THEN CAST(valor_individual AS NUMERIC) ELSE 0 END) AS total_cortesia
+      FROM "Encanto".pedido p
+      JOIN "Encanto".pagamentos p2 ON p.id = p2.idpedido
+      CROSS JOIN LATERAL unnest(string_to_array(p2.valor::TEXT, ', ')) AS valor_individual
+      GROUP BY 
+          p.id, p.status, p.created_at, p.created_by, p.id_mesa, p.mesa, p.valor, p.obs, p.pedidos, p.acepted_at, p.acepted_by, p2.created_by, p.taxa
+  ) AS subquery
+  WHERE 
+      EXTRACT(MONTH FROM subquery.created_at) IN ('${messes
+        .split(',')
+        .join("','")}')
+  GROUP BY EXTRACT(MONTH FROM DATE_TRUNC('month', subquery.created_at))
+  ORDER BY numero_mes DESC;`
+    );
+  }
 }

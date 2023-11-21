@@ -164,4 +164,9 @@ export class PedidoController {
   ): Promise<any[]> {
     return this.pedidoServise.getRelatorioPedidosUni(dataInicial, dataFinal);
   }
+
+  @Get('/relatorio/pedidos/GraficoMensal')
+  async getGraficoMesses(@Query('messes') messes: any): Promise<any[]> {
+    return this.pedidoServise.getGraficoMesses(messes);
+  }
 }
