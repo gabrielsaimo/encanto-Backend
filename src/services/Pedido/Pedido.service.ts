@@ -319,6 +319,7 @@ FROM (
     return this.pedidoRepository.query(
       `SELECT 
       EXTRACT(MONTH FROM DATE_TRUNC('month', subquery.created_at)) AS numero_mes,
+      EXTRACT(YEAR FROM subquery.created_at) AS ano,
       SUM(subquery.total_pago) AS soma_total
   FROM (
       SELECT 
@@ -346,11 +347,11 @@ FROM (
           p.id, p.status, p.created_at, p.created_by, p.id_mesa, p.mesa, p.valor, p.obs, p.pedidos, p.acepted_at, p.acepted_by, p2.created_by, p.taxa
   ) AS subquery
   WHERE 
-      EXTRACT(MONTH FROM subquery.created_at) IN ('${messes
+      TO_CHAR(subquery.created_at, 'YYYY-MM') IN ('${messes
         .split(',')
         .join("','")}')
-  GROUP BY EXTRACT(MONTH FROM DATE_TRUNC('month', subquery.created_at))
-  ORDER BY numero_mes DESC;`
+  GROUP BY EXTRACT(MONTH FROM DATE_TRUNC('month', subquery.created_at)), EXTRACT(YEAR FROM subquery.created_at)
+  ORDER BY ano DESC, numero_mes DESC;`
     );
   }
 }
