@@ -351,7 +351,7 @@ FROM (
         .split(',')
         .join("','")}')
   GROUP BY EXTRACT(MONTH FROM DATE_TRUNC('month', subquery.created_at)), EXTRACT(YEAR FROM subquery.created_at)
-  ORDER BY ano DESC, numero_mes DESC;`
+  ORDER BY ano ASC, numero_mes ASC;`
     );
   }
 }
