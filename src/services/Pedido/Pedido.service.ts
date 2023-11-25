@@ -267,7 +267,7 @@ export class PedidoService {
 
   async getStatusPedido(id: number): Promise<any[]> {
     return this.pedidoRepository.query(
-      `SELECT pu.qdt,pu.item,pu.status  from "Encanto".pedidos_uni pu  where pu.idmesa = $1 and pu.status not in ('Cancelado','Concluido');`,
+      `select pu.qdt,pu.item,pu.status  from "Encanto".pedidos_uni pu join "Encanto".pedido p on(p.pedidos = pu.idpedido) where pu.idmesa = $1 and pu.status  not in ('Cancelado','Concluido') and p.status not in ('Concluido')`,
       [id]
     );
   }
