@@ -15,7 +15,7 @@ export class UserService {
 
   async findUser(name: string, password: string): Promise<any> {
     const response = await this.userRepository.query(
-      `select id,categoria, active ,idcompany  from "Encanto".user where "name" = '${name}' and "password" = '${password}'`
+      `select id, name, categoria, active ,idcompany  from "Encanto".user where "name" = '${name}' and "password" = '${password}'`
     );
     return response;
   }
