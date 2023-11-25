@@ -265,6 +265,13 @@ export class PedidoService {
     );
   }
 
+  async getStatusPedido(id: number): Promise<any[]> {
+    return this.pedidoRepository.query(
+      `SELECT pu.qdt,pu.item,pu.status  from "Encanto".pedidos_uni pu  where pu.idmesa = $1 and pu.status not in ('Cancelado','Concluido');`,
+      [id]
+    );
+  }
+
   async getRelatorioPagamentos(
     data_inicial: any,
     data_final: any,

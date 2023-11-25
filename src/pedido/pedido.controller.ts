@@ -144,6 +144,11 @@ export class PedidoController {
     return this.pedidoServise.verificaStatusPedido(id);
   }
 
+  @Get('verif/status/mesa/:id')
+  async getStatusPedido(@Param('id') mesa: number): Promise<any[]> {
+    return this.pedidoServise.getStatusPedido(mesa);
+  }
+
   @Get('/relatorio/vendas')
   async getRelatorioPagamentos(
     @Query('data_inicial') dataInicial: any,
