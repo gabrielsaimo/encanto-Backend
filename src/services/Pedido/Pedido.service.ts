@@ -212,7 +212,7 @@ export class PedidoService {
     return this.pedidoRepository.query(
       `SELECT *
       FROM "Encanto".pedidos_uni p
-      WHERE p.created_at >= '$1 00:00:00' AND p.created_at <= '$2 23:59:59';`,
+      WHERE p.created_at >= $1 AND p.created_at <= $2;`,
       [data_inicial, data_final]
     );
   }
