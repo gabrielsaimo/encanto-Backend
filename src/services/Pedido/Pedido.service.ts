@@ -208,6 +208,15 @@ export class PedidoService {
     );
   }
 
+  async getPedidosDate(data_inicial: any, data_final: any): Promise<any> {
+    return this.pedidoRepository.query(
+      `SELECT *
+      FROM "Encanto".pedidos_uni p
+      WHERE p.created_at >= '$1 00:00:00' AND p.created_at <= '$2 23:59:59';`,
+      [data_inicial, data_final]
+    );
+  }
+
   async delete(id: number): Promise<any> {
     return this.pedidoRepository.query(
       'delete from "Encanto".pedido where id = $1',

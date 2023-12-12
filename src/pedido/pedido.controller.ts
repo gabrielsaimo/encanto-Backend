@@ -104,6 +104,14 @@ export class PedidoController {
     return this.pedidoServise.getPedidos();
   }
 
+  @Get('pedidos/data')
+  async getPedidosData(
+    @Query('data_inicial') dataInicial: any,
+    @Query('data_final') dataFinal: any
+  ): Promise<Pedido[]> {
+    return this.pedidoServise.getPedidosDate(dataInicial, dataFinal);
+  }
+
   @Post('pedidos')
   async updateStatusPedidos_uni(@Body() data: any): Promise<Pedido[]> {
     return this.pedidoServise.updateStatusPedidos_uni(data);
