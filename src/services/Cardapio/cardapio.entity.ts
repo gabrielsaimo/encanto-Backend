@@ -32,4 +32,7 @@ export class Cardapio {
 
   @Column()
   imagem: string;
+
+  @Column()
+  meia: boolean;
 }
