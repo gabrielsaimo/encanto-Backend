@@ -68,6 +68,14 @@ export class GerenciamentoService {
     );
   }
 
+  async updateEmail(email: any): Promise<any> {
+    await this.cacheManager.del('Email');
+    return this.GerenciamentoRepository.query(
+      'update "Encanto".email set  type = $1  where id = $2',
+      [email.type, email.id]
+    );
+  }
+
   async deleteEmail(id: number): Promise<any> {
     await this.cacheManager.del('Email');
     return this.GerenciamentoRepository.query(
