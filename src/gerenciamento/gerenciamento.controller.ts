@@ -28,7 +28,7 @@ export class GerenciamentoController {
     return this.gerenciamentoService.update(bairro);
   }
 
-  @Delete('/bairros:id')
+  @Delete('/bairros/:id')
   async deleteBairros(@Param() id: number): Promise<any> {
     return this.gerenciamentoService.delete(id);
   }
@@ -48,7 +48,7 @@ export class GerenciamentoController {
     return this.gerenciamentoService.updateEmail(email);
   }
 
-  @Delete('/email:id')
+  @Delete('/email/:id')
   async deleteEmail(@Param() id: number): Promise<any> {
     return this.gerenciamentoService.deleteEmail(id);
   }
