@@ -43,6 +43,11 @@ export class GerenciamentoController {
     return this.gerenciamentoService.createEmail(email);
   }
 
+  @Post('/email')
+  async updateEmail(@Body() email: any): Promise<any> {
+    return this.gerenciamentoService.updateEmail(email);
+  }
+
   @Delete('/email:id')
   async deleteEmail(@Param() id: number): Promise<any> {
     return this.gerenciamentoService.deleteEmail(id);
