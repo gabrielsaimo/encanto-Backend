@@ -29,7 +29,7 @@ export class GerenciamentoController {
   }
 
   @Delete('/bairros/:id')
-  async deleteBairros(@Param() id: number): Promise<any> {
+  async deleteBairros(@Param() id: any): Promise<any> {
     return this.gerenciamentoService.delete(id);
   }
 

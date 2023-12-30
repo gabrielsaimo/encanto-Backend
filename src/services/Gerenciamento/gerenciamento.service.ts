@@ -40,7 +40,7 @@ export class GerenciamentoService {
     );
   }
 
-  async delete(bairro: number): Promise<any> {
+  async delete(bairro: any): Promise<any> {
     await this.cacheManager.del('Bairros');
     return this.GerenciamentoRepository.query(
       'delete from "Encanto".bairros where id = $1',
