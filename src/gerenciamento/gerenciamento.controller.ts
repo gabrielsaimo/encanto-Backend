@@ -30,7 +30,7 @@ export class GerenciamentoController {
 
   @Delete('/bairros/:id')
   async deleteBairros(@Param() id: any): Promise<any> {
-    return this.gerenciamentoService.delete(id);
+    return this.gerenciamentoService.delete(id.id);
   }
 
   @Get('/email')
@@ -49,7 +49,7 @@ export class GerenciamentoController {
   }
 
   @Delete('/email/:id')
-  async deleteEmail(@Param() id: number): Promise<any> {
-    return this.gerenciamentoService.deleteEmail(id);
+  async deleteEmail(@Param() id: any): Promise<any> {
+    return this.gerenciamentoService.deleteEmail(id.id);
   }
 }

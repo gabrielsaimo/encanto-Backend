@@ -44,7 +44,7 @@ export class GerenciamentoService {
     await this.cacheManager.del('Bairros');
     return this.GerenciamentoRepository.query(
       'delete from "Encanto".bairros where id = $1',
-      [Number(bairro)]
+      [bairro]
     );
   }
 
