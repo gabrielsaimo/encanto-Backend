@@ -34,6 +34,8 @@ import { NotificationsGateway } from './web-socket/notifications.gateway';
 import { CacheModule } from '@nestjs/cache-manager';
 import { GerenciamentoController } from './gerenciamento/gerenciamento.controller';
 import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
+import { Gerenciamento_entity } from './services/Gerenciamento/gerenciamento.entity';
+import { GerenciamentoService } from './services/Gerenciamento/gerenciamento.service';
 
 @Module({
   imports: [
@@ -46,6 +48,7 @@ import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
       CategoriaCardapio,
       Estoque,
       Pedido,
+      Gerenciamento_entity,
       //  Pagamentos_entity,
     ]),
     EstoqueModule,
@@ -78,6 +81,7 @@ import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
     PedidoService,
     // PagamentosService,
     EmailService,
+    GerenciamentoService,
     NotificationsGateway,
   ],
 })
