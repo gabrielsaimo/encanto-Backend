@@ -200,7 +200,7 @@ export class PedidoService {
         data.item,
         data.valor,
         data.idpedido,
-        data.categoria,
+        data.category,
         data.status,
         data.created_at,
       ]
