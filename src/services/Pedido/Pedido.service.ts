@@ -168,8 +168,8 @@ export class PedidoService {
   async createPedido(data: any): Promise<any> {
     return this.pedidoRepository.query(
       `INSERT INTO "Encanto".pedidos_uni
-      (id, qdt, item, valor, obs, idpedido, categoria, iditem, idmesa, status, update_at, update_by, created_at, created_by)
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`,
+      (id, qdt, item, valor, obs, idpedido, categoria, iditem, idmesa, status, update_at, update_by, created_at, created_by,info)
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)`,
       [
         data.id,
         data.qdt,
@@ -185,6 +185,7 @@ export class PedidoService {
         data.update_by,
         data.created_at,
         data.created_by,
+        data.info,
       ]
     );
   }
@@ -192,7 +193,7 @@ export class PedidoService {
   async createPedidoDelivery(data: any): Promise<any> {
     return this.pedidoRepository.query(
       `INSERT INTO "Encanto".pedidos_delivery
-      (id, qdt, item, valor, idpedido, category, status, created_at,info)
+      (id, qdt, item, valor, idpedido, category, status, created_at)
       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,info)`,
       [
         data.id,
@@ -202,8 +203,7 @@ export class PedidoService {
         data.idpedido,
         data.category,
         data.status,
-        data.created_at,
-        data.info,
+        data.created_at
       ]
     );
   }
