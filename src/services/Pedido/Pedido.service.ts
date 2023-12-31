@@ -194,7 +194,7 @@ export class PedidoService {
     return this.pedidoRepository.query(
       `INSERT INTO "Encanto".pedidos_delivery
       (id, qdt, item, valor, idpedido, category, status, created_at)
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,info)`,
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8)`,
       [
         data.id,
         data.qdt,
@@ -203,7 +203,7 @@ export class PedidoService {
         data.idpedido,
         data.category,
         data.status,
-        data.created_at
+        data.created_at,
       ]
     );
   }
