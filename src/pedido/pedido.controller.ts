@@ -104,6 +104,11 @@ export class PedidoController {
     return this.pedidoServise.createPedidoDelivery(pedido);
   }
 
+  @Get('pedidos/Delivery')
+  async getPedidosDelivery(): Promise<Pedido[]> {
+    return this.pedidoServise.getPedidosDelivery();
+  }
+
   @Get('pedidos')
   async getPedidos(): Promise<Pedido[]> {
     return this.pedidoServise.getPedidos();

@@ -13,7 +13,7 @@ export class PedidoService {
 
   async findPedido(): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `select * from "Encanto".pedido where status not in('Concluido','Cancelado') ORDER BY created_at DESC;`
+      `select * from "Encanto".pedido where status not in('Concluido','Cancelado','Em Analize Delivery') ORDER BY created_at DESC;`
     );
   }
   async findPedidoAdm(): Promise<Pedido[]> {
@@ -224,6 +224,12 @@ export class PedidoService {
   async getPedidos(): Promise<any> {
     return this.pedidoRepository.query(
       `select * from "Encanto".pedidos_uni p ;`
+    );
+  }
+
+  async getPedidosDelivery(): Promise<any> {
+    return this.pedidoRepository.query(
+      `select * from "Encanto".pedidos_delivery p ;`
     );
   }
 
