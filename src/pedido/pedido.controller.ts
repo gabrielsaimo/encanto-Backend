@@ -99,6 +99,11 @@ export class PedidoController {
     return this.pedidoServise.createPedido(pedido);
   }
 
+  @Put('pedidos/Delivery')
+  async createPedidoDelivery(@Body() pedido: any): Promise<any> {
+    return this.pedidoServise.createPedidoDelivery(pedido);
+  }
+
   @Get('pedidos')
   async getPedidos(): Promise<Pedido[]> {
     return this.pedidoServise.getPedidos();

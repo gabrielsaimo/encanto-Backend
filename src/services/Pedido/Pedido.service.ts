@@ -135,7 +135,7 @@ export class PedidoService {
   async create(data: Pedido): Promise<Pedido> {
     return this.pedidoRepository.query(
       `INSERT INTO "Encanto".pedido
-    (id, created_at, desconto, mesa, id_mesa, obs, pedidos, status, valor, created_by, acepted_by, acepted_at, update_by, finished_by, finished_at, update_at) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11,$12, $13, $14, $15, $16)`,
+    (id, created_at, desconto, mesa, id_mesa, obs, pedidos, status, valor, created_by, acepted_by, acepted_at, update_by, finished_by, finished_at, update_at,type) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11,$12, $13, $14, $15, $16,$15)`,
       [
         data.id,
         data.created_at,
@@ -153,6 +153,7 @@ export class PedidoService {
         data.finished_by,
         data.finished_at,
         data.update_at,
+        data.type,
       ]
     );
   }
@@ -184,6 +185,25 @@ export class PedidoService {
         data.update_by,
         data.created_at,
         data.created_by,
+      ]
+    );
+  }
+
+  async createPedidoDelivery(data: any): Promise<any> {
+    return this.pedidoRepository.query(
+      `INSERT INTO "Encanto".pedidos_delivery
+      (id, qdt, item, valor, idpedido, categoria, iditem, status, created_at)
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
+      [
+        data.id,
+        data.qdt,
+        data.item,
+        data.valor,
+        data.idpedido,
+        data.categoria,
+        data.iditem,
+        data.status,
+        data.created_at,
       ]
     );
   }

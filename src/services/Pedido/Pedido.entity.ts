@@ -56,4 +56,7 @@ export class Pedido {
 
   @Column()
   obs_cancel: string;
+
+  @Column()
+  type: string;
 }
