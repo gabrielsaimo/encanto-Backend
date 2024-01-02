@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column } from 'typeorm';
 
 @Entity()
 export class Pedido {
-  @PrimaryGeneratedColumn()
+  @Column({ primary: true })
   id: number;
 
   @Column()
