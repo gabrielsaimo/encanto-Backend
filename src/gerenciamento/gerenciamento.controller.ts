@@ -52,4 +52,9 @@ export class GerenciamentoController {
   async deleteEmail(@Param() id: any): Promise<any> {
     return this.gerenciamentoService.deleteEmail(id.id);
   }
+
+  @Get('/dados')
+  async findDados(): Promise<any> {
+    return this.gerenciamentoService.getDados();
+  }
 }
