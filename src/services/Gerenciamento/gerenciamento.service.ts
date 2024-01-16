@@ -85,14 +85,10 @@ export class GerenciamentoService {
   }
 
   async getDados(): Promise<any> {
-    const value: any = await this.cacheManager.get('Dados');
-    if (value) {
-      return value;
-    }
     const response = this.GerenciamentoRepository.query(
       'select * from "Encanto".dados_gerais'
     );
-    await this.cacheManager.set('Dados', response, 0);
+
     return response;
   }
 
