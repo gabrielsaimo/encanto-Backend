@@ -95,4 +95,13 @@ export class GerenciamentoService {
     await this.cacheManager.set('Dados', response, 0);
     return response;
   }
+
+  async postDados(dados: any): Promise<any> {
+    await this.cacheManager.del('Dados');
+    const response = this.GerenciamentoRepository.query(
+      'update "Encanto".dados_gerais set phone = $1 where id = $2',
+      [dados.phone, dados.id]
+    );
+    return await response;
+  }
 }

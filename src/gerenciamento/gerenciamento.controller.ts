@@ -57,4 +57,9 @@ export class GerenciamentoController {
   async findDados(): Promise<any> {
     return this.gerenciamentoService.getDados();
   }
+
+  @Post('/dados')
+  async updateDados(@Body() dados: any): Promise<any> {
+    return this.gerenciamentoService.postDados(dados);
+  }
 }
