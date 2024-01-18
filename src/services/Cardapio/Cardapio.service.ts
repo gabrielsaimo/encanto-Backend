@@ -27,7 +27,7 @@ export class CardapioService {
       STRING_AGG(a.id::TEXT, ', ') AS ids
       FROM "Encanto".cardapio c
       LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq)
-      GROUP BY c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia
+      GROUP BY c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type
       ORDER BY c.id;`
     );
     console.log('banco');
