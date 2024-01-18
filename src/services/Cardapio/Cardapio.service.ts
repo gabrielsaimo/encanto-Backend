@@ -23,7 +23,7 @@ export class CardapioService {
       return value;
     }
     const response = await this.CardapioRepository.query(
-      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,
+      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type,
       STRING_AGG(a.id::TEXT, ', ') AS ids
       FROM "Encanto".cardapio c
       LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq)
@@ -39,7 +39,7 @@ export class CardapioService {
   async update(cardapio: any): Promise<Cardapio> {
     await this.cacheManager.del('Cardapio');
     return await this.CardapioRepository.query(
-      'update "Encanto".cardapio set active = $1 , name = $2 , price= $3 , description = $4 , category= $5 , sub = $6 , update_at = $7 , update_by= $8 , meia=$9 where id = $10',
+      'update "Encanto".cardapio set active = $1 , name = $2 , price= $3 , description = $4 , category= $5 , sub = $6 , update_at = $7 , update_by= $8 , meia=$9 , type=$10 where id = $11',
       [
         cardapio.active,
         cardapio.name,
@@ -50,6 +50,7 @@ export class CardapioService {
         cardapio.update_at,
         cardapio.update_by,
         cardapio.meia,
+        cardapio.type,
         cardapio.id,
       ]
     );
@@ -58,7 +59,7 @@ export class CardapioService {
   async create(cardapio: any): Promise<Cardapio> {
     await this.cacheManager.del('Cardapio');
     return await this.CardapioRepository.query(
-      'insert into "Encanto".cardapio (active, name, price, description, category, sub, update_at,update_by, meia,  id ) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
+      'insert into "Encanto".cardapio (active, name, price, description, category, sub, update_at,update_by, meia, type,  id ) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
       [
         cardapio.active,
         cardapio.name,
@@ -69,6 +70,7 @@ export class CardapioService {
         cardapio.update_at,
         cardapio.update_by,
         cardapio.meia,
+        cardapio.type,
         cardapio.id,
       ]
     );
