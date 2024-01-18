@@ -14,7 +14,7 @@ export class GerenciamentoService {
 
   async findBairro(): Promise<Gerenciamento_entity> {
     const value: any = await this.cacheManager.get('Bairros');
-    if (value) {
+    if (value && Object.keys(value).length > 0) {
       return value;
     }
     const response = await this.GerenciamentoRepository.query(
@@ -50,7 +50,7 @@ export class GerenciamentoService {
 
   async findEmail(): Promise<any> {
     const value: any = await this.cacheManager.get('Email');
-    if (value) {
+    if (value && Object.keys(value).length > 0) {
       return value;
     }
     const response = this.GerenciamentoRepository.query(
@@ -85,10 +85,15 @@ export class GerenciamentoService {
   }
 
   async getDados(): Promise<any> {
+    const value: any = await this.cacheManager.get('Dados');
+    if (value && Object.keys(value).length > 0) {
+      return value;
+    }
     const response = this.GerenciamentoRepository.query(
       'select * from "Encanto".dados_gerais'
     );
 
+    await this.cacheManager.set('Dados', response, 0);
     return response;
   }
 

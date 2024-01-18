@@ -16,7 +16,7 @@ export class CategoriaCardapioService {
 
   async findAll(): Promise<CategoriaCardapio> {
     const value: any = await this.cacheManager.get('CategoriaCardapio');
-    if (value) {
+    if (value && Object.keys(value).length > 0) {
       return value;
     }
     const response = await this.categoriaCardapioRepository.query(
