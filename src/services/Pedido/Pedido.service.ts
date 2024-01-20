@@ -18,7 +18,10 @@ export class PedidoService {
   }
   async findPedidoAdm(): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `select * from "Encanto".pedido  order by update_at desc;`
+      `SELECT *
+      FROM "Encanto".pedido
+      WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '48 hours'
+      ORDER BY update_at DESC;`
     );
   }
 
