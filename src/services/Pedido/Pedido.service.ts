@@ -13,15 +13,12 @@ export class PedidoService {
 
   async findPedido(): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `select * from "Encanto".pedido where status not in('Concluido','Cancelado','Em Analize Delivery') ORDER BY created_at DESC;`
+      `select * from "Encanto".pedido where created_at >= CURRENT_TIMESTAMP - INTERVAL '48 hours' and status not in('Concluido','Cancelado','Em Analize Delivery','Recusado') ORDER BY created_at DESC;`
     );
   }
   async findPedidoAdm(): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `SELECT *
-      FROM "Encanto".pedido
-      WHERE created_at >= CURRENT_TIMESTAMP - INTERVAL '48 hours'
-      ORDER BY update_at DESC;`
+      `select * from "Encanto".pedido  order by update_at desc;`
     );
   }
 
