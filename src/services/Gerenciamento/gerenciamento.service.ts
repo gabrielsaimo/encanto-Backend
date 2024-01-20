@@ -27,8 +27,8 @@ export class GerenciamentoService {
   async update(bairro: any): Promise<any> {
     await this.cacheManager.del('Bairros');
     return this.GerenciamentoRepository.query(
-      'update "Encanto".bairros set active = $1 , name = $2 , price = $3 where id = $4',
-      [bairro.active, bairro.name, bairro.price, bairro.id]
+      'update "Encanto".bairros set  name = $1 , price = $2 where id = $3',
+      [bairro.name, bairro.price, bairro.id]
     );
   }
 
