@@ -67,9 +67,9 @@ export class PedidoService {
     );
   }
 
-  async findStatusPedido(id): Promise<Pedido[]> {
+  async findStatusPedido(id: number): Promise<Pedido[]> {
     return this.pedidoRepository.query(
-      `select status,valor,info from "Encanto".pedido where id = $1;`,
+      `Select p.status,p.valor,p.info, pd.* from "Encanto".pedido p join "Encanto".pedidos_delivery pd on(p.id = pd.idpedido)  where p.id = $1;;`,
       [id]
     );
   }
