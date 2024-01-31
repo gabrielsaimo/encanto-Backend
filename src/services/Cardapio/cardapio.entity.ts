@@ -35,4 +35,7 @@ export class Cardapio {
 
   @Column()
   meia: boolean;
+
+  @Column()
+  highlight: boolean;
 }

@@ -23,11 +23,11 @@ export class CardapioService {
       return value;
     }
     const response = await this.CardapioRepository.query(
-      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type,
+      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type,c.highlight
       STRING_AGG(a.id::TEXT, ', ') AS ids
       FROM "Encanto".cardapio c
       LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq)
-      GROUP BY c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type
+      GROUP BY c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type,c.highlight
       ORDER BY c.id;`
     );
     console.log('banco');
@@ -39,7 +39,7 @@ export class CardapioService {
   async update(cardapio: any): Promise<Cardapio> {
     await this.cacheManager.del('Cardapio');
     return await this.CardapioRepository.query(
-      'update "Encanto".cardapio set active = $1 , name = $2 , price= $3 , description = $4 , category= $5 , sub = $6 , update_at = $7 , update_by= $8 , meia=$9 , type=$10 where id = $11',
+      'update "Encanto".cardapio set active = $1 , name = $2 , price= $3 , description = $4 , category= $5 , sub = $6 , update_at = $7 , update_by= $8 , meia=$9 , type=$10, highlight=$11 where id = $12',
       [
         cardapio.active,
         cardapio.name,
@@ -51,6 +51,7 @@ export class CardapioService {
         cardapio.update_by,
         cardapio.meia,
         cardapio.type,
+        cardapio.highlight,
         cardapio.id,
       ]
     );
@@ -59,7 +60,7 @@ export class CardapioService {
   async create(cardapio: any): Promise<Cardapio> {
     await this.cacheManager.del('Cardapio');
     return await this.CardapioRepository.query(
-      'insert into "Encanto".cardapio (active, name, price, description, category, sub, update_at,update_by, meia, type,  id ) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+      'insert into "Encanto".cardapio (active, name, price, description, category, sub, update_at,update_by, meia, type,highlight,  id ) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11, $12)',
       [
         cardapio.active,
         cardapio.name,
@@ -71,6 +72,7 @@ export class CardapioService {
         cardapio.update_by,
         cardapio.meia,
         cardapio.type,
+        cardapio.highlight,
         cardapio.id,
       ]
     );
