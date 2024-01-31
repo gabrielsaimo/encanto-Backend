@@ -23,7 +23,7 @@ export class CardapioService {
       return value;
     }
     const response = await this.CardapioRepository.query(
-      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type,c.highlight
+      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type,c.highlight,
       STRING_AGG(a.id::TEXT, ', ') AS ids
       FROM "Encanto".cardapio c
       LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq)
