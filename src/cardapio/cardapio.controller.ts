@@ -7,48 +7,93 @@ import {
   Get,
   Post,
   Put,
+  HttpException,
+  HttpStatus,
 } from '@nestjs/common';
 import { CardapioService } from '../services/Cardapio/Cardapio.service';
 import { Cardapio } from '../services/Cardapio/cardapio.entity';
-
+import { validate } from 'class-validator';
 @Controller('cardapio')
 export class CardapioController {
   constructor(private readonly CardapioService: CardapioService) {}
 
   @Get()
   async findAll(): Promise<Cardapio> {
-    JSON.stringify(this.CardapioService.findAll());
-    return this.CardapioService.findAll();
+    try {
+      return await this.CardapioService.findAll();
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @Post()
   async update(@Body() cardapio: Cardapio): Promise<any> {
-    return this.CardapioService.update(cardapio);
+    const errors = await validate(cardapio);
+    if (errors.length > 0) {
+      throw new HttpException(errors, HttpStatus.BAD_REQUEST);
+    } else {
+      try {
+        return await this.CardapioService.update(cardapio);
+      } catch (error: any) {
+        throw new HttpException(
+          error.message,
+          HttpStatus.INTERNAL_SERVER_ERROR
+        );
+      }
+    }
   }
 
   @Put()
   async create(@Body() cardapio: Cardapio): Promise<any> {
-    return this.CardapioService.create(cardapio);
+    const errors = await validate(cardapio);
+    if (errors.length > 0) {
+      throw new HttpException(errors, HttpStatus.BAD_REQUEST);
+    } else {
+      try {
+        return await this.CardapioService.create(cardapio);
+      } catch (error: any) {
+        throw new HttpException(
+          error.message,
+          HttpStatus.INTERNAL_SERVER_ERROR
+        );
+      }
+    }
   }
 
   @Delete(':id')
   async delete(@Param('id') id: any): Promise<any> {
-    return this.CardapioService.delete(id);
+    try {
+      return await this.CardapioService.delete(id);
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @Post('imagem')
   async imagem(@Body() imagem: any): Promise<any> {
-    return this.CardapioService.updateImage(imagem);
+    try {
+      return await this.CardapioService.createImage(imagem);
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @Delete('deleteimagem/:id')
   async deleteImagem(@Param('id') id: number): Promise<any> {
-    return this.CardapioService.deleteImage(id);
+    try {
+      return await this.CardapioService.deleteImage(id);
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @Post('imagemsub')
   async imagemSub(@Body() imagem: any): Promise<any> {
-    return this.CardapioService.updateImageId(imagem);
+    try {
+      return await this.CardapioService.createImage(imagem);
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @Post('InsertImg')
@@ -63,6 +108,10 @@ export class CardapioController {
 
   @Get('destaques')
   async findDestaques(): Promise<any> {
-    return this.CardapioService.findDestaques();
+    try {
+      return await this.CardapioService.findDestaques();
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 }
