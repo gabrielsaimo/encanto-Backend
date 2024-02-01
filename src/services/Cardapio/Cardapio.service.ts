@@ -86,6 +86,26 @@ export class CardapioService {
     );
   }
 
+  async findDestaques(): Promise<Cardapio> {
+    const value: Cardapio = await this.cacheManager.get('CardapioDestaque');
+    if (value) {
+      console.log('cache');
+      return value;
+    }
+    const response = await this.CardapioRepository.query(
+      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type,c.highlight,
+      STRING_AGG(a.id::TEXT, ', ') AS ids
+      FROM "Encanto".cardapio c
+      LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq) where c.highlight = true
+      GROUP BY c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type,c.highlight
+      ORDER BY c.id;`
+    );
+    console.log('banco');
+
+    await this.cacheManager.set('CardapioDestaque', response, 0);
+    return response;
+  }
+
   async updateImage(data: any): Promise<any> {
     await this.cacheManager.del('Cardapio');
     return await this.CardapioRepository.query(
