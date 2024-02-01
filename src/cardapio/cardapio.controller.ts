@@ -61,7 +61,7 @@ export class CardapioController {
     return this.CardapioService.findImageReq(id);
   }
 
-  @Get('cardapio/destaques')
+  @Get('destaques')
   async findDestaques(): Promise<any> {
     return this.CardapioService.findDestaques();
   }
