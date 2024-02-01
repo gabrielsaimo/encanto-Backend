@@ -9,6 +9,7 @@ import { Aseetes } from './assetes.entity';
 
 @Injectable()
 export class CardapioService {
+  private static readonly CARDAPIO_CACHE_KEY = 'Cardapio';
   constructor(
     @InjectRepository(Cardapio)
     @InjectRepository(Aseetes)
@@ -17,25 +18,30 @@ export class CardapioService {
   ) {}
 
   async findAll(): Promise<Cardapio> {
-    const value: Cardapio = await this.cacheManager.get('Cardapio');
-    if (value) {
-      console.log('cache');
-      return value;
-    }
-    const response = await this.CardapioRepository.query(
-      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type,c.highlight,
-      STRING_AGG(a.id::TEXT, ', ') AS ids
-      FROM "Encanto".cardapio c
-      LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq)
-      GROUP BY c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type,c.highlight
-      ORDER BY c.id;`
+    let cardapio: Cardapio = await this.cacheManager.get(
+      CardapioService.CARDAPIO_CACHE_KEY
     );
-    console.log('banco');
-
-    await this.cacheManager.set('Cardapio', response, 0);
-    return response;
+    if (cardapio) {
+      return cardapio;
+    }
+    cardapio = await this.fetchCardapioFromDb();
+    await this.cacheManager.set(
+      CardapioService.CARDAPIO_CACHE_KEY,
+      cardapio,
+      0
+    );
+    return cardapio;
   }
-
+  private async fetchCardapioFromDb(): Promise<Cardapio> {
+    return await this.CardapioRepository.query(
+      `SELECT c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type,c.highlight,
+    STRING_AGG(a.id::TEXT, ', ') AS ids
+    FROM "Encanto".cardapio c
+    LEFT JOIN "Encanto".assetes a ON (c.id = a.idreq)
+    GROUP BY c.id, c."name", c.category, c.description, c.sub, c.price, c.active, c.meia,c.type,c.highlight
+    ORDER BY c.id;`
+    );
+  }
   async update(cardapio: any): Promise<Cardapio> {
     await this.cacheManager.del('Cardapio');
     return await this.CardapioRepository.query(
