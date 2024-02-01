@@ -13,10 +13,9 @@ export class CardapioService {
     @InjectRepository(Cardapio)
     @InjectRepository(Aseetes)
     @Inject(CACHE_MANAGER)
-    private cacheManager: Cache,
     private readonly CardapioRepository: Repository<any>
   ) {}
-
+  private cacheManager: Cache;
   async findAll(): Promise<Cardapio> {
     const value: Cardapio = await this.cacheManager.get('Cardapio');
     if (value) {
