@@ -73,7 +73,7 @@ ${this.DeliveryLink}`
   2. Delivery
   3. Cancelar pedido
 
-  Por favor, responda com o número da opção que você gostaria de escolher.
+Por favor, responda com o número da opção que você gostaria de escolher.
       `);
     } catch (error) {
       console.error('Error sending initial options:', error);
