@@ -36,6 +36,8 @@ import { GerenciamentoController } from './gerenciamento/gerenciamento.controlle
 import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
 import { Gerenciamento_entity } from './services/Gerenciamento/gerenciamento.entity';
 import { GerenciamentoService } from './services/Gerenciamento/gerenciamento.service';
+import { WhatsappService } from './services/WhatsApp_BOT/whatsapp.service';
+import { WhastappController } from './services/WhatsApp_BOT/whatsapp.controller';
 
 @Module({
   imports: [
@@ -71,6 +73,7 @@ import { GerenciamentoService } from './services/Gerenciamento/gerenciamento.ser
     // PagamentosController,
     NotificationsController,
     GerenciamentoController,
+    WhastappController,
   ],
   providers: [
     CategoriaCardapioService,
@@ -83,6 +86,7 @@ import { GerenciamentoService } from './services/Gerenciamento/gerenciamento.ser
     EmailService,
     GerenciamentoService,
     NotificationsGateway,
+    WhatsappService,
   ],
 })
 export class AppModule implements NestModule {
