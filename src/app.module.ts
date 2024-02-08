@@ -36,6 +36,10 @@ import { GerenciamentoController } from './gerenciamento/gerenciamento.controlle
 import { GerenciamentoModule } from './gerenciamento/gerenciamento.module';
 import { Gerenciamento_entity } from './services/Gerenciamento/gerenciamento.entity';
 import { GerenciamentoService } from './services/Gerenciamento/gerenciamento.service';
+import { ClienteModule } from './cliente/cliente.module';
+import { ClienteService } from './cliente/cliente.service';
+import { CleinteController } from './cliente/cliente.controller';
+import { Cliente_entity } from './cliente/cliente.entity';
 @Module({
   imports: [
     CacheModule.register(),
@@ -48,6 +52,7 @@ import { GerenciamentoService } from './services/Gerenciamento/gerenciamento.ser
       Estoque,
       Pedido,
       Gerenciamento_entity,
+      Cliente_entity,
       //  Pagamentos_entity,
     ]),
     EstoqueModule,
@@ -58,6 +63,7 @@ import { GerenciamentoService } from './services/Gerenciamento/gerenciamento.ser
     WebSocketModule,
     //  PagamentosModule,
     GerenciamentoModule,
+    ClienteModule,
   ],
   controllers: [
     CategoriaCardapioController,
@@ -70,6 +76,7 @@ import { GerenciamentoService } from './services/Gerenciamento/gerenciamento.ser
     // PagamentosController,
     NotificationsController,
     GerenciamentoController,
+    CleinteController,
   ],
   providers: [
     CategoriaCardapioService,
@@ -82,6 +89,7 @@ import { GerenciamentoService } from './services/Gerenciamento/gerenciamento.ser
     EmailService,
     GerenciamentoService,
     NotificationsGateway,
+    ClienteService,
   ],
 })
 export class AppModule implements NestModule {
