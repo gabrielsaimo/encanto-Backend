@@ -17,6 +17,17 @@ export class ClienteService {
     return response;
   }
 
+  async GetValidarCliente(phone: number): Promise<any> {
+    const response = await this.clienteRepository.query(
+      `select * from "Encanto".clinteslist where phone = $1`,
+      [phone]
+    );
+    if (!response || response.length === 0) {
+      return { valido: true };
+    }
+    return { valido: false };
+  }
+
   async create(body: Cliente_entity): Promise<Cliente_entity> {
     return this.clienteRepository.query(
       'insert into "Encanto".clinteslist ( name ,category,phone,active) values ($1,$2,$3,$4)',

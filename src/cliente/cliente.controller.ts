@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { ClienteService } from './cliente.service';
 import { Cliente_entity } from './cliente.entity';
 
@@ -9,6 +9,11 @@ export class CleinteController {
   @Get()
   async findUserAdm(): Promise<Cliente_entity> {
     return this.clienteService.getCliente();
+  }
+
+  @Get('validar/:phone')
+  async validarUser(@Param('phone') phone): Promise<any> {
+    return this.clienteService.GetValidarCliente(phone);
   }
 
   /* @Post()
