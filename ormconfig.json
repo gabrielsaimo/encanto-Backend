@@ -1,6 +1,11 @@
 {
     "type": "postgres",
-    "url": "postgres://default:fh3sxIEMt5OX@ep-curly-art-830376-pooler.us-east-2.postgres.vercel-storage.com:5432/verceldb",
+    "host": "database",
+    "url": "postgres://default:QL1CvrbgyA9k@ep-curly-rice-576902-pooler.us-east-2.postgres.vercel-storage.com:5432/verceldb",
+    "port": 5432,
+    "username": "default",
+    "password": "QL1CvrbgyA9k",
+    "database": "verceldb",
     "entities": ["src/entities/*.ts"],
     "synchronize": true
   }

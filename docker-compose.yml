@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  api:
+    container_name: nest_api
+    build: .
+    ports:
+      - '3000:3000' # Example port binding for the API service
+    volumes:
+      - .:/app
+      - ./app/node_modules
+
+  database:
+    container_name: nest_db
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: verceldb
+      POSTGRES_USER: default
+      POSTGRES_PASSWORD: QL1CvrbgyA9k
+    ports:
+      - '5432:5432' # Port binding for PostgreSQL service

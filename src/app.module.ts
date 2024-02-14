@@ -40,9 +40,18 @@ import { ClienteModule } from './cliente/cliente.module';
 import { ClienteService } from './cliente/cliente.service';
 import { CleinteController } from './cliente/cliente.controller';
 import { Cliente_entity } from './cliente/cliente.entity';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
+import { CardapioResolver } from './cardapio/cardapio.resolver';
 @Module({
   imports: [
     CacheModule.register(),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      sortSchema: true,
+    }),
     TypeOrmModule.forRoot(databaseConfig),
     TypeOrmModule.forFeature([
       Start,
@@ -90,6 +99,7 @@ import { Cliente_entity } from './cliente/cliente.entity';
     GerenciamentoService,
     NotificationsGateway,
     ClienteService,
+    CardapioResolver,
   ],
 })
 export class AppModule implements NestModule {
