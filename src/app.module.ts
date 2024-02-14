@@ -47,11 +47,11 @@ import { CardapioResolver } from './cardapio/cardapio.resolver';
 @Module({
   imports: [
     CacheModule.register(),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
+    /* GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
-    }),
+    }),*/
     TypeOrmModule.forRoot(databaseConfig),
     TypeOrmModule.forFeature([
       Start,
